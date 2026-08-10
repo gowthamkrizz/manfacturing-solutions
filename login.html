@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In | Stackly Industrial</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }          :root {             --primary: #FF5E14;             --secondary: #111111;             --gray-100: #f9f9f9;             --gray-200: #eaeaea;             --gray-400: #aaa;             --gray-500: #666;             --gray-700: #333;             --error: #dc2626;             --success: #16a34a;         }          body {             font-family: 'Inter', sans-serif;             display: flex;             height: 100vh;             overflow: hidden;             background: var(--secondary);         }          /* ====== LEFT PANEL ====== */         .left-panel {             flex: 1;             position: relative;             overflow: hidden;             display: flex;             flex-direction: column;             justify-content: flex-end;             padding: 50px 60px;         }          .left-bg {             position: absolute;             inset: 0;             background: url('images/about_factory.webp') center/cover no-repeat;             animation: slowZoom 20s ease-in-out infinite alternate;         }          @keyframes slowZoom {             from { transform: scale(1.03); }             to   { transform: scale(1.10); }         }          .left-overlay {             position: absolute;             inset: 0;             background: linear-gradient(to bottom,                 rgba(17,17,17,0.35) 0%,                 rgba(17,17,17,0.6)  45%,                 rgba(17,17,17,0.93) 100%);         }          .left-logo {             position: absolute;             top: 40px; left: 50px;             z-index: 3;             display: flex;             align-items: center;             gap: 10px;             text-decoration: none;         }          .logo-box {             width: 40px; height: 40px;             background: var(--primary);             border-radius: 9px;             display: flex;             align-items: center;             justify-content: center;             font-family: 'Oswald', sans-serif;             font-weight: 800;             font-size: 15px;             color: #fff;         }          .logo-name {             font-family: 'Oswald', sans-serif;             font-size: 22px;             font-weight: 700;             color: #fff;         }          .logo-name span { color: var(--primary); }          .left-content { position: relative; z-index: 2; }          .left-tag {             display: inline-flex;             align-items: center;             gap: 8px;             color: var(--primary);             font-size: 11px;             font-weight: 700;             letter-spacing: 3px;             text-transform: uppercase;             margin-bottom: 16px;         }          .left-tag::before {             content: '';             width: 26px; height: 3px;             background: var(--primary);             border-radius: 2px;         }          .left-heading {             font-family: 'Oswald', sans-serif;             font-size: clamp(34px, 3.8vw, 56px);             font-weight: 800;             color: #fff;             line-height: 1.1;             letter-spacing: -1.5px;             margin-bottom: 18px;         }          .left-heading em { font-style: normal; color: var(--primary); }          .left-desc {             color: rgba(255,255,255,0.65);             font-size: 14px;             line-height: 1.7;             max-width: 380px;             margin-bottom: 28px;         }          .left-pills {             display: flex;             gap: 10px;             flex-wrap: wrap;         }          .pill {             display: inline-flex;             align-items: center;             gap: 7px;             background: rgba(255,255,255,0.08);             backdrop-filter: blur(8px);             border: 1px solid rgba(255,255,255,0.12);             border-radius: 30px;             padding: 8px 14px;             color: #fff;             font-size: 12px;             font-weight: 600;             transition: all 0.3s;         }          .pill i { color: var(--primary); font-size: 11px; }         .pill:hover { background: rgba(255,94,20,0.18); border-color: rgba(255,94,20,0.4); }          /* ====== RIGHT PANEL ====== */         .right-panel {             width: 460px;             min-width: 420px;             height: 100vh;             overflow-y: auto;             background: #fff;             display: flex;             align-items: center;             justify-content: center;             padding: 30px 45px;         }          .right-panel::-webkit-scrollbar { width: 4px; }         .right-panel::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 10px; }         .right-panel::-webkit-scrollbar-thumb:hover { background: var(--primary); }          .form-wrap { width: 100%; }          /* Header */         .form-tag {             display: inline-flex;             align-items: center;             gap: 8px;             color: var(--primary);             font-size: 11px;             font-weight: 700;             letter-spacing: 2.5px;             text-transform: uppercase;             margin-bottom: 8px;         }          .form-tag::before {             content: '';             width: 22px; height: 3px;             background: var(--primary);             border-radius: 2px;         }          .form-title {             font-family: 'Oswald', sans-serif;             font-size: 32px;             font-weight: 800;             color: var(--secondary);             letter-spacing: -0.5px;             margin-bottom: 6px;         }          .form-title span { color: var(--primary); }          .form-subtitle {             font-size: 13px;             color: var(--gray-500);             line-height: 1.55;             margin-bottom: 22px;         }          /* Fields */         .form-group {             margin-bottom: 14px;         }          .form-group label {             display: block;             font-size: 11px;             font-weight: 700;             color: var(--gray-700);             text-transform: uppercase;             letter-spacing: 1.5px;             margin-bottom: 6px;         }          .input-wrap {             position: relative;             display: flex;             align-items: center;         }          .input-icon {             position: absolute;             left: 14px;             color: var(--gray-400);             font-size: 13px;             pointer-events: none;             transition: color 0.3s;             z-index: 1;         }          .form-input {             width: 100%;             padding: 11px 18px 11px 40px;             border: 2px solid var(--gray-200);             border-radius: 10px;             font-size: 14px;             font-family: 'Inter', sans-serif;             color: var(--gray-700);             background: var(--gray-100);             outline: none;             transition: all 0.3s;             -webkit-appearance: none;         }          .form-input::placeholder { color: var(--gray-400); }          .form-input:focus {             border-color: var(--primary);             background: #fff;             box-shadow: 0 0 0 4px rgba(255,94,20,0.08);         }          .input-wrap:focus-within .input-icon { color: var(--primary); }          /* Password toggle */         .toggle-pass {             position: absolute;             right: 13px;             background: none;             border: none;             color: var(--gray-400);             cursor: pointer;             font-size: 13px;             padding: 0;             transition: color 0.3s;         }          .toggle-pass:hover { color: var(--primary); }          /* Select chevron */         .chevron {             position: absolute;             right: 13px;             color: var(--gray-400);             font-size: 11px;             pointer-events: none;         }          /* Remember + Forgot row */         .form-meta {             display: flex;             justify-content: space-between;             align-items: center;             margin-bottom: 18px;             margin-top: 4px;         }          .remember-wrap {             display: flex;             align-items: center;             gap: 8px;             cursor: pointer;         }          .remember-wrap input { accent-color: var(--primary); cursor: pointer; }          .remember-wrap span { font-size: 13px; color: var(--gray-500); }          .forgot-link {             font-size: 13px;             color: var(--primary);             font-weight: 600;             text-decoration: none;         }          .forgot-link:hover { text-decoration: underline; }          /* Alert */         .form-alert {             display: none;             padding: 11px 16px;             border-radius: 10px;             font-size: 13px;             font-weight: 500;             gap: 9px;             align-items: center;             margin-bottom: 14px;         }          .form-alert.error {             display: flex;             background: rgba(220,38,38,0.06);             border: 1.5px solid rgba(220,38,38,0.25);             color: var(--error);         }          .form-alert.success {             display: flex;             background: rgba(22,163,74,0.06);             border: 1.5px solid rgba(22,163,74,0.25);             color: var(--success);         }          /* Field error */         .field-error {             display: none;             font-size: 11px;             color: var(--error);             margin-top: 4px;             gap: 5px;             align-items: center;         }          .field-error.show { display: flex; }          /* Submit */         .btn-submit {             width: 100%;             padding: 13px;             background: var(--secondary);             color: #fff;             border: none;             border-radius: 10px;             font-family: 'Oswald', sans-serif;             font-size: 15px;             font-weight: 700;             letter-spacing: 1px;             cursor: pointer;             transition: all 0.3s;             display: flex;             align-items: center;             justify-content: center;             gap: 10px;             text-transform: uppercase;             margin-bottom: 16px;             position: relative;             overflow: hidden;         }          .btn-submit::after {             content: '';             position: absolute;             top: 0; left: -100%;             width: 100%; height: 100%;             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);             transition: left 0.5s;         }          .btn-submit:hover::after { left: 100%; }         .btn-submit:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(255,94,20,0.28); }         .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }         .btn-submit i { transition: transform 0.3s; }         .btn-submit:hover i { transform: translateX(5px); }          /* Switch link */         .switch-link {             text-align: center;             font-size: 13px;             color: var(--gray-500);         }          .switch-link a {             color: var(--primary);             font-weight: 700;             text-decoration: none;         }          .switch-link a:hover { text-decoration: underline; }          /* Responsive */         @media (max-width: 900px) {             body { overflow-y: auto; }             .left-panel { display: none; }             .right-panel { width: 100%; min-width: unset; height: auto; min-height: 100vh; align-items: flex-start; padding-top: 50px; }         }     </style>
+</head>
+<body>
+<!-- ====== LEFT PANEL ====== -->
+<div class="left-panel">
+<div class="left-bg">
+</div>
+<div class="left-overlay">
+</div>
+<a href="index.html" class="left-logo" style="display:inline-block; margin-bottom: 30px;">
+<img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 45px; display: block;">
+</a>
+<div class="left-content">
+<div class="left-tag">Welcome Back</div>
+<h1 class="left-heading">                 Engineering<br>Your <em>Industrial</em>
+<br>Future             </h1>
+<p class="left-desc">                 Access your STACKLY account to manage industrial projects, track deliveries, explore 500+ solutions, and connect with our global network of certified engineers.             </p>
+<div class="left-pills">
+<div class="pill">
+<i class="fas fa-industry">
+</i> 500+ Projects</div>
+<div class="pill">
+<i class="fas fa-globe">
+</i> 40+ Countries</div>
+<div class="pill">
+<i class="fas fa-shield-alt">
+</i> ISO Certified</div>
+</div>
+</div>
+</div>
+<!-- ====== RIGHT PANEL ====== -->
+<div class="right-panel">
+<div class="form-wrap">
+<!-- Back to Home -->
+<a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--text-muted);text-decoration:none;margin-bottom:22px;padding:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;transition:all .25s ease" onmouseover="this.style.color='var(--primary)';this.style.borderColor='var(--primary)';this.style.background='rgba(255,94,20,0.08)'" onmouseout="this.style.color='var(--text-muted)';this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
+<i class="fas fa-arrow-left" style="font-size:11px">
+</i> Back to Home             </a>
+<!-- Heading -->
+<div class="form-tag">Welcome Back</div>
+<h2 class="form-title">Sign <span>In</span>
+</h2>
+<p class="form-subtitle">Enter your credentials below to access your industrial dashboard.</p>
+<!-- Alert -->
+<div class="form-alert" id="formAlert">
+<i class="fas fa-circle-exclamation">
+</i>
+<span id="alertText">
+</span>
+</div>
+<form id="loginForm" novalidate>
+<!-- Username -->
+<div class="form-group">
+<label for="lusername">Username</label>
+<div class="input-wrap">
+<i class="fas fa-user input-icon">
+</i>
+<input type="text" id="lusername" class="form-input" placeholder="Enter your username" required>
+</div>
+<div class="field-error" id="lusernameErr">
+<i class="fas fa-triangle-exclamation">
+</i> Please enter your username</div>
+</div>
+<!-- Login As -->
+<div class="form-group">
+<label for="lrole">Login As</label>
+<div class="input-wrap">
+<i class="fas fa-user-shield input-icon">
+</i>
+<select id="lrole" class="form-input" required>
+<option value="" disabled selected>Select your role...</option>
+<option value="user">User</option>
+<option value="admin">Admin</option>
+</select>
+<i class="fas fa-chevron-down chevron">
+</i>
+</div>
+<div class="field-error" id="lroleErr">
+<i class="fas fa-triangle-exclamation">
+</i> Please select a role</div>
+</div>
+<!-- Email -->
+<div class="form-group">
+<label for="lemail">Email Address</label>
+<div class="input-wrap">
+<i class="fas fa-envelope input-icon">
+</i>
+<input type="email" id="lemail" class="form-input" placeholder="you@company.com" required>
+</div>
+<div class="field-error" id="lemailErr">
+<i class="fas fa-triangle-exclamation">
+</i> Enter a valid email address</div>
+</div>
+<!-- Password -->
+<div class="form-group">
+<label for="lpassword">Password</label>
+<div class="input-wrap">
+<i class="fas fa-lock input-icon">
+</i>
+<input type="password" id="lpassword" class="form-input" placeholder="Min. 8 characters" required>
+<button type="button" class="toggle-pass" onclick="toggleVis('lpassword',this)">
+<i class="fas fa-eye">
+</i>
+</button>
+</div>
+<div class="field-error" id="lpasswordErr">
+<i class="fas fa-triangle-exclamation">
+</i> Password must be at least 8 characters</div>
+</div>
+<!-- Remember + Forgot -->
+<div class="form-meta">
+<label class="remember-wrap">
+<input type="checkbox" id="remember">
+<span>Remember me</span>
+</label>
+<a href="404.html" class="forgot-link">Forgot password?</a>
+</div>
+<button type="submit" class="btn-submit" id="submitBtn">
+<span>Sign In</span>
+<i class="fas fa-arrow-right">
+</i>
+</button>
+</form>
+<p class="switch-link">                 Don't have an account? <a href="signup.html">Create one free</a>
+</p>
+</div>
+</div>
+<script>
+    function toggleVis(id, btn) {
+        var el = document.getElementById(id);
+        var ic = btn.querySelector('i');
+        el.type = el.type === 'password' ? 'text' : 'password';
+        ic.className = el.type === 'text' ? 'fas fa-eye-slash' : 'fas fa-eye';
+    }
+    function showAlert(type, msg) {
+        var el = document.getElementById('formAlert');
+        el.className = 'form-alert ' + type;
+        document.getElementById('alertText').textContent = msg;
+    }
+    function fieldErr(id, show) {
+        var el = document.getElementById(id);
+        if (el) { if (show) el.classList.add('show'); else el.classList.remove('show'); }
+    }
+    function forgotPass(e) {
+        e.preventDefault();
+        var email = prompt('Enter your registered email address:');
+        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showAlert('success', 'Password reset link sent to ' + email);
+        } else if (email) {
+            showAlert('error', 'Please enter a valid email address.');
+        }
+    }
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var valid = true;
+        var username = document.getElementById('lusername').value.trim();
+        var role     = document.getElementById('lrole').value;
+        var email    = document.getElementById('lemail').value.trim();
+        var password = document.getElementById('lpassword').value;
+
+        fieldErr('lusernameErr', !username); if (!username) valid = false;
+        fieldErr('lroleErr',     !role);     if (!role)     valid = false;
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        fieldErr('lemailErr',    !emailOk);  if (!emailOk)  valid = false;
+        var passOk = password.length >= 8;
+        fieldErr('lpasswordErr', !passOk);   if (!passOk)   valid = false;
+
+        if (!valid) {
+            showAlert('error', 'Please fix the errors above before signing in.');
+            return;
+        }
+
+        var btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span>Signing In...</span><i class="fas fa-spinner fa-spin"></i>';
+
+        setTimeout(function() {
+            btn.innerHTML = '<span>Success!</span><i class="fas fa-check"></i>';
+            btn.style.background = '#16a34a';
+            var userData = {
+                fname: username,
+                lname: '',
+                email: email,
+                role: role
+            };
+            sessionStorage.setItem('stacklyUser', JSON.stringify(userData));
+            var dest = role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+            showAlert('success', 'Welcome back! Redirecting to your ' + role + ' dashboard...');
+            setTimeout(function() { window.location.href = dest; }, 1500);
+        }, 1800);
+    });
+
+    ['lusername','lrole','lemail','lpassword'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('input', function() { fieldErr(id + 'Err', false); });
+    });
+</script>
+</body>
+</html>

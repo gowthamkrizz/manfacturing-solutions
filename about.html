@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Stackly Industrial Theme</title>
+<meta name="description" content="Learn about Stackly â€” 25+ years of industrial manufacturing excellence, our mission, team, values and story.">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>         .section-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--primary-color);margin-bottom:14px}         .section-tag::before{content:'';width:28px;height:3px;background:var(--primary-color);border-radius:2px}         .section-title{font-family:var(--font-heading);font-size:clamp(30px,4vw,50px);font-weight:700;line-height:1.15;color:var(--secondary-color);margin-bottom:20px}         .section-title span{color:var(--primary-color)}         .section-desc{font-size:16px;line-height:1.8;color:#666;max-width:580px}         .fade-in{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}         .fade-in.from-left{transform:translateX(-50px)}         .fade-in.from-right{transform:translateX(50px)}         .fade-in.visible{opacity:1;transform:translate(0,0)}         .fd1{transition-delay:.15s}.fd2{transition-delay:.3s}.fd3{transition-delay:.45s}.fd4{transition-delay:.6s}          /* HERO BANNER */         .about-banner{padding:160px 0;position:relative;overflow:hidden;border:none}         .about-banner .banner-bg{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(rgba(17,17,17,0.75),rgba(17,17,17,0.85)),url('images/about_factory.webp') center/cover no-repeat;z-index:0;animation:bannerZoom 25s linear infinite alternate}         @keyframes bannerZoom{from{transform:scale(1)}to{transform:scale(1.15)}}         .about-banner .container{position:relative;z-index:1}         .about-banner h1{font-size:clamp(40px,5vw,64px);margin-bottom:15px;text-shadow:0 10px 30px rgba(0,0,0,.3)}         .reveal-up{opacity:0;transform:translateY(40px);animation:revUp 1s cubic-bezier(0.2,0.8,0.2,1) forwards;animation-delay:var(--delay,0s)}         @keyframes revUp{to{opacity:1;transform:translateY(0)}}           /* Â§1 WHO WE ARE */         .who-section{padding:110px 0;background:#fff;overflow:hidden}         .who-grid{display:block;max-width:800px;margin:0 auto;text-align:center}         .who-grid .section-tag{margin:0 auto 14px}         .who-grid .section-desc{margin:0 auto 25px}         .who-list{list-style:none;margin:28px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left}         .who-list li{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500;color:#444}         .who-list li i{color:var(--primary-color);font-size:18px}         .who-cta{display:inline-flex;align-items:center;gap:10px;background:var(--secondary-color);color:#fff;font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:1px;text-transform:uppercase;padding:16px 32px;border-radius:4px;transition:background .3s,transform .3s;text-decoration:none;margin-top:10px}         .who-cta:hover{background:var(--primary-color);transform:translateY(-3px);color:#fff}          /* Â§2 MISSION & VISION */         .mv-section{padding:130px 0;background:linear-gradient(rgba(17,17,17,0.92),rgba(17,17,17,0.92)),url('images/about_plant.webp') center/cover fixed;position:relative}         .mv-section .section-title{color:#fff}         .mv-section .section-desc{color:rgba(255,255,255,0.7)}         .mv-header{text-align:center;margin-bottom:60px;position:relative;z-index:1}         .mv-header .section-desc{margin:0 auto}         .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;position:relative;z-index:1}         .mv-card{padding:50px 44px;border-radius:12px;position:relative;overflow:hidden;transition:transform .4s ease,box-shadow .4s ease;z-index:1;border:1px solid rgba(255,255,255,0.06)}         .mv-card.mission{background:var(--secondary-color)}         .mv-card.vision{background:var(--primary-color)}         .mv-card:hover{transform:translateY(-12px)}         .mv-card.mission:hover{box-shadow:0 20px 40px rgba(0,0,0,.2)}         .mv-card.vision:hover{box-shadow:0 20px 40px rgba(255,94,20,.3)}         .mv-card-icon{width:80px;height:80px;background:rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;margin-bottom:28px;transition:transform .4s ease;position:relative;z-index:2}         .mv-card:hover .mv-card-icon{transform:scale(1.1);background:rgba(255,255,255,.25)}         .mv-card h3{font-family:var(--font-heading);font-size:32px;font-weight:700;margin-bottom:16px;color:#fff;position:relative;z-index:2}         .mv-card p{font-size:16px;line-height:1.8;color:rgba(255,255,255,.85);position:relative;z-index:2}         .mv-card::after{content:'';position:absolute;bottom:-40px;right:-40px;width:180px;height:180px;background:rgba(255,255,255,.06);border-radius:50%;z-index:-1;transition:transform .6s cubic-bezier(.165,.84,.44,1)}         .mv-card:hover::after{transform:scale(8)}         @keyframes mv-target{0%,100%{transform:scale(1)}50%{transform:scale(1.3);text-shadow:0 0 15px rgba(255,255,255,.6)}}         @keyframes mv-vision{0%,100%{transform:scale(1) translateX(0)}25%{transform:scale(1.1) translateX(-4px)}75%{transform:scale(1.1) translateX(4px)}}         .mv-card.mission:hover .fa-bullseye{animation:mv-target 1.2s infinite ease-in-out}         .mv-card.vision:hover .fa-eye{animation:mv-vision 2s infinite ease-in-out}          /* Â§3 NUMBERS THAT SPEAK */         .stats-section{padding:100px 0;background:var(--secondary-color);position:relative;overflow:hidden}         .stats-section::before{content:'STACKLY';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-heading);font-size:220px;font-weight:900;color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none}         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}         .stat-box{text-align:center;padding:50px 30px;border-right:1px solid rgba(255,255,255,.08)}         .stat-box:last-child{border-right:none}         .stat-icon{width:60px;height:60px;background:var(--primary-color);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 20px}         .stat-num{font-family:var(--font-heading);font-size:58px;font-weight:700;color:#fff;line-height:1;display:flex;align-items:flex-start;justify-content:center}         .stat-num .suffix{font-size:34px;margin-top:8px;color:var(--primary-color)}         .stat-label{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-top:10px}          /* Â§4 VALUES */         .values-section{padding:110px 0;background:#f9f9fc}         .values-header{text-align:center;margin-bottom:60px}         .values-header .section-desc{margin:0 auto}         .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}         .value-card{background:#fff;border-radius:12px;padding:50px 30px;text-align:center;position:relative;overflow:hidden;z-index:1;box-shadow:0 10px 40px rgba(0,0,0,.04);transition:transform .4s cubic-bezier(.165,.84,.44,1);cursor:default;border:none}         .value-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--secondary-color);z-index:-1;transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.165,.84,.44,1)}         .value-card:hover{transform:translateY(-15px);box-shadow:0 20px 50px rgba(0,0,0,.15)}         .value-card:hover::before{transform:scaleY(1)}         .value-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,94,20,.1);display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--primary-color);margin:0 auto 30px;transition:all .4s ease;position:relative;z-index:2}         .value-card:hover .value-icon{background:var(--primary-color);color:#fff;transform:scale(1.1)}         .value-card h4{font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--secondary-color);margin-bottom:14px;transition:color .4s ease}         .value-card p{font-size:15px;color:#666;line-height:1.7;transition:color .4s ease}         .value-card:hover h4{color:#fff}         .value-card:hover p{color:rgba(255,255,255,.8)}         @keyframes v-sparkle{0%,100%{transform:scale(1)}50%{transform:scale(1.2) rotate(15deg)}}         @keyframes v-flicker{0%,100%{opacity:1;text-shadow:0 0 15px rgba(255,255,255,.8)}50%{opacity:.6;text-shadow:none}}         @keyframes v-sway{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-15deg)}75%{transform:rotate(15deg)}}         @keyframes v-pulse{0%,100%{transform:scale(1)}25%{transform:scale(1.1) rotate(-5deg)}75%{transform:scale(1.1) rotate(5deg)}}         .value-card:hover .fa-gem{animation:v-sparkle 1.5s infinite ease-in-out}         .value-card:hover .fa-lightbulb{animation:v-flicker 1s infinite ease-in-out}         .value-card:hover .fa-leaf{animation:v-sway 2s infinite ease-in-out;transform-origin:bottom center}         .value-card:hover .fa-handshake{animation:v-pulse 1.5s infinite ease-in-out}          /* Â§5 OUR STORY */         .story-section{padding:110px 0;background:#f9f9fc;overflow:hidden}         .story-header{text-align:center;margin-bottom:70px}         .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative}         .story-grid::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:repeating-linear-gradient(90deg,#ccc 0,#ccc 6px,transparent 6px,transparent 12px);animation:mv-line-x 1.5s linear infinite}         .story-grid-cell{padding:50px 40px;position:relative}         .story-grid-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:repeating-linear-gradient(90deg,#ccc 0,#ccc 6px,transparent 6px,transparent 12px);animation:mv-line-x 1.5s linear infinite}         .story-grid-cell::before{content:'';position:absolute;top:0;bottom:0;right:0;width:1px;background:repeating-linear-gradient(180deg,#ccc 0,#ccc 6px,transparent 6px,transparent 12px);animation:mv-line-y 1.5s linear infinite}         .story-grid-cell:nth-child(2n)::before{display:none}         @keyframes mv-line-x{from{background-position:0 0}to{background-position:24px 0}}         @keyframes mv-line-y{from{background-position:0 0}to{background-position:0 24px}}         .story-card{background:linear-gradient(135deg,transparent 35px,#fff 0);padding:40px 35px;transition:transform .4s ease}         .story-card:hover{transform:translateY(-8px)}         .story-card-inner{display:grid;grid-template-columns:120px 1fr;row-gap:35px;column-gap:30px;align-items:start}         .story-num{font-family:var(--font-heading);font-size:18px;font-weight:700;color:#555;margin-top:5px}         .story-img{height:220px;width:100%;overflow:hidden}         .story-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}         .story-card:hover .story-img img{transform:scale(1.05)}         .story-title{font-family:var(--font-heading);font-size:26px;font-weight:700;color:var(--secondary-color);line-height:1.2;margin-top:0}         .story-desc{font-size:15px;color:#666;line-height:1.7;margin-top:0}          /* Â§6 WHY CHOOSE */         .why-about-section{padding:110px 0;background:#fff;overflow:hidden}         .why-about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative}         .why-about-grid > div:nth-child(2){grid-column:2}         .why-about-img{position:absolute;left:calc(-50vw + 50%);top:0;bottom:0;width:calc(50vw - 40px);border-radius:0 8px 8px 0;overflow:hidden;margin:0}         .why-about-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}         .why-about-img:hover img{transform:scale(1.04)}         .why-about-features{display:flex;flex-direction:column;gap:28px;margin-top:28px}         .why-feat{display:flex;gap:20px;align-items:flex-start;padding:24px;border-radius:8px;border:1px solid #eee;transition:border-color .3s,box-shadow .3s}         .why-feat:hover{border-color:var(--primary-color);box-shadow:0 8px 28px rgba(255,94,20,.1)}         .why-feat-icon{width:52px;height:52px;flex-shrink:0;background:var(--primary-color);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}         .why-feat h5{font-family:var(--font-heading);font-size:18px;font-weight:700;color:var(--secondary-color);margin-bottom:6px}         .why-feat p{font-size:14px;color:#777;line-height:1.6}          /* Â§7 TEAM */         .team-section{padding:110px 0;background:var(--secondary-color)}         .team-header{text-align:center;margin-bottom:60px}         .team-header .section-tag{color:#fff}         .team-header .section-tag::before{background:#fff}         .team-header .section-title{color:#fff}         .team-header .section-title span{color:var(--primary-color)}         .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}         .team-card{background:#1e1e1e;border-radius:8px;overflow:hidden;transition:transform .35s,box-shadow .35s}         .team-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,0,0,.4)}         .team-photo{overflow:hidden;aspect-ratio:3/3.5}         .team-photo img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s}         .team-card:hover .team-photo img{transform:scale(1.07)}         .team-info{padding:26px 28px}         .team-info h4{font-family:var(--font-heading);font-size:22px;font-weight:700;color:#fff;margin-bottom:4px}         .team-role{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary-color);margin-bottom:14px}         .team-bio{font-size:14px;color:#aaa;line-height:1.7;margin-bottom:18px}         .team-socials{display:flex;gap:10px}         .team-socials a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.07);color:#ccc;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s;text-decoration:none}         .team-socials a:hover{background:var(--primary-color);color:#fff}          /* Â§8 TESTIMONIALS */         .testimonials-about{padding:110px 0;background:#f7f7f5;position:relative;overflow:hidden}         .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:30px}         .testi-card{background:var(--secondary-color);border-radius:6px;padding:45px 35px;transition:all .4s ease;position:relative;z-index:1;display:flex;flex-direction:column;border-bottom:3px solid transparent}         .testi-card:hover{transform:translateY(-10px);border-bottom:3px solid var(--primary-color);box-shadow:0 25px 50px rgba(0,0,0,.15)}         .testi-quote-badge{position:absolute;top:-20px;right:30px;width:48px;height:48px;background:var(--primary-color);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:36px;font-family:Georgia,serif;line-height:1;padding-top:16px;box-shadow:0 8px 20px rgba(255,94,20,.3);transition:transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275)}         .testi-card:hover .testi-quote-badge{transform:scale(1.15) rotate(-10deg)}         .testi-stars{color:var(--primary-color);font-size:14px;margin-bottom:20px;display:flex;gap:4px}         .testi-stars i{transition:transform .3s ease}         .testi-card:hover .testi-stars i{animation:starPop .5s ease forwards}         .testi-card:hover .testi-stars i:nth-child(2){animation-delay:.1s}         .testi-card:hover .testi-stars i:nth-child(3){animation-delay:.2s}         .testi-card:hover .testi-stars i:nth-child(4){animation-delay:.3s}         .testi-card:hover .testi-stars i:nth-child(5){animation-delay:.4s}         @keyframes starPop{50%{transform:scale(1.4);color:#fff}100%{transform:scale(1);color:var(--primary-color)}}         .testi-text{font-size:15px;color:#aaa;line-height:1.9;margin-bottom:30px;font-style:italic;flex-grow:1}         .testi-author{display:flex;align-items:center;gap:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px}         .testi-avatar{width:50px;height:50px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:18px;font-weight:700;color:#fff;flex-shrink:0;transition:all .4s ease}         .testi-card:hover .testi-avatar{background:var(--primary-color);border-color:var(--primary-color);color:#fff;transform:rotate(360deg)}         .testi-name{font-family:var(--font-heading);font-size:18px;font-weight:700;color:#fff;margin-bottom:4px;transition:color .4s ease}         .testi-company{font-size:12px;color:var(--primary-color);letter-spacing:1px;text-transform:uppercase}          @media(max-width:1024px){             .why-about-grid{grid-template-columns:1fr;gap:50px}             .why-about-grid > div:nth-child(2){grid-column:1}             .values-grid{grid-template-columns:1fr 1fr;gap:30px}             .why-about-img{position:relative;left:0;margin-left:0;width:100%;top:auto;bottom:auto;height:400px;border-radius:8px}             .who-badge{right:20px}             .mv-grid{grid-template-columns:1fr}             .values-grid{grid-template-columns:1fr 1fr}             .stats-grid{grid-template-columns:1fr 1fr}             .team-grid{grid-template-columns:1fr 1fr}             .testi-grid{grid-template-columns:1fr}             .story-grid{grid-template-columns:1fr}             .story-grid-cell::before{display:none}         }         @media(max-width:768px){             .values-grid,.team-grid,.testi-grid{grid-template-columns:1fr}             .stats-grid{grid-template-columns:1fr}             .story-grid-cell{padding:20px 0}             .story-card{padding:30px 20px}             .story-card-inner{grid-template-columns:1fr;row-gap:20px}             .story-num{margin-bottom:-10px}         }     </style>
+</head>
+<body>
+<div class="top-bar">
+<div class="container top-bar-inner">
+<div class="top-bar-left">
+<p>
+<i class="fas fa-map-marker-alt">
+</i> MMR Complex, Salem - 636 003, Tamil Nadu, India</p>
+<p>
+<i class="fas fa-clock">
+</i> Mon - Sat: 8:00 am - 6:00 pm</p>
+</div>
+<div class="top-bar-right">
+<a href="404.html">
+<i class="fab fa-facebook-f">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-youtube">
+</i>
+</a>
+</div>
+</div>
+</div>
+<header class="header" id="header">
+<div class="container header-inner">
+<div class="logo" style="display:flex;align-items:center;">
+<a href="index.html"><img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 40px; display: block;"></a>
+</div>
+<nav class="nav-menu">
+<ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="about.html" class="active">About Us</a>
+</li>
+<li>
+<a href="projects.html">Projects</a>
+</li>
+<li>
+<a href="blog.html">Blog</a>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+
+<li class="mobile-login-item">
+<a href="login.html" class="btn btn-primary" style="padding: 10px 30px; font-size: 16px;">Login</a>
+</li>
+</ul>
+</nav>
+<div class="header-right">
+<div class="contact-info">
+<i class="fas fa-phone-alt">
+</i>
+<div>
+<span>Call Us Anytime</span>
+<strong>+91 74880 99999</strong>
+</div>
+</div>
+<a href="login.html" class="btn btn-primary">Login</a>
+<button class="mobile-menu-btn">
+<i class="fas fa-bars">
+</i>
+</button>
+</div>
+</div>
+</header>
+<div class="page-banner about-banner">
+<div class="banner-bg">
+</div>
+<div class="container">
+<h1 class="reveal-up">About <span>Us</span>
+</h1>
+<div class="breadcrumb reveal-up" style="--delay:0.2s">
+<a href="index.html">Home</a> / <span>About Us</span>
+</div>
+</div>
+</div>
+<!-- §1 WHO WE ARE -->
+<style>
+    .who-section { padding: 100px 0; background: #fff; overflow: hidden; }
+    .who-grid-modern { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .who-image-wrapper { position: relative; border-radius: 12px; }
+    .who-main-img { width: 100%; height: 500px; object-fit: cover; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: translateY(0); transition: transform 0.6s ease; }
+    .who-image-wrapper:hover .who-main-img { transform: translateY(-10px); }
+    .who-stats-badge { position: absolute; bottom: -30px; right: -30px; background: var(--primary-color); color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 15px 35px rgba(255,94,20,0.3); text-align: center; animation: floatBadge 4s ease-in-out infinite; }
+    .who-stats-badge h3 { font-size: 42px; font-family: 'Oswald', sans-serif; margin-bottom: 5px; font-weight: 800; line-height: 1; }
+    .who-stats-badge p { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin: 0; }
+    @keyframes floatBadge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    .who-list-modern { list-style: none; padding: 0; margin: 30px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .who-list-modern li { display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; color: #333; opacity: 0; animation: slideInFade 0.6s ease forwards; }
+    .who-list-modern li i { color: var(--primary-color); font-size: 20px; background: rgba(255,94,20,0.1); padding: 8px; border-radius: 50%; }
+    .who-list-modern li:nth-child(1) { animation-delay: 0.2s; } .who-list-modern li:nth-child(2) { animation-delay: 0.4s; }
+    .who-list-modern li:nth-child(3) { animation-delay: 0.6s; } .who-list-modern li:nth-child(4) { animation-delay: 0.8s; }
+    @keyframes slideInFade { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    .who-cta-modern { display: inline-flex; align-items: center; gap: 10px; background: #111; color: #fff; padding: 15px 32px; border-radius: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .who-cta-modern::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--primary-color); transition: all 0.4s ease; z-index: 1; }
+    .who-cta-modern:hover::before { left: 0; }
+    .who-cta-modern span, .who-cta-modern i { position: relative; z-index: 2; transition: all 0.3s ease; }
+    .who-cta-modern:hover i { transform: translateX(5px); }
+    @media (max-width: 992px) { .who-grid-modern { grid-template-columns: 1fr; } .who-stats-badge { right: 20px; bottom: -20px; } }
+    @media (max-width: 576px) { .who-list-modern { grid-template-columns: 1fr; } }
+</style>
+<section class="who-section gsap-reveal">
+    <div class="container">
+        <div class="who-grid-modern">
+            
+            <!-- Left Image with Floating Badge -->
+            <div class="who-image-wrapper">
+                <img src="images/proj_machinery.webp" alt="Industrial Manufacturing" class="who-main-img">
+                <div class="who-stats-badge">
+                    <h3>25+</h3>
+                    <p>Years of<br>Excellence</p>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="who-content-modern">
+                <div class="section-tag">Who We Are</div>
+                <h2 class="section-title">We Are The Best <span>Industrial</span> Company</h2>
+                <p class="section-desc" style="margin-bottom: 25px; line-height: 1.8; color: #666; font-size: 16px;">
+                    With over two decades of dedicated service, Stackly has been at the forefront of industrial innovation. We engineer solutions that drive progress, combining heavy machinery expertise with sustainable practices to build the factories of tomorrow.
+                </p>
+                
+                <ul class="who-list-modern">
+                    <li><i class="fas fa-check"></i> ISO 9001 Certified</li>
+                    <li><i class="fas fa-globe"></i> Global Supply Chain</li>
+                    <li><i class="fas fa-headset"></i> 24/7 Tech Support</li>
+                    <li><i class="fas fa-leaf"></i> Eco-Friendly Processes</li>
+                </ul>
+                
+                <a href="404.html" class="who-cta-modern">
+                    <span>View Our Projects</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- Â§2 MISSION & VISION -->
+<section class="mv-section">
+<div class="container">
+<div class="mv-header fade-in">
+<div class="section-tag">Our Purpose</div>
+<h2 class="section-title">Mission &amp; <span>Vision</span>
+</h2>
+<p class="section-desc">Two pillars that guide every decision, every project, and every partnership we forge.</p>
+</div>
+<div class="mv-grid">
+<div class="mv-card mission fade-in from-left">
+<div class="mv-card-icon">
+<i class="fas fa-bullseye">
+</i>
+</div>
+<h3>Our Mission</h3>
+<p>To deliver world-class industrial manufacturing solutions that empower businesses to build stronger, smarter infrastructure through innovation, precision engineering, and an uncompromising commitment to quality and safety.</p>
+</div>
+<div class="mv-card vision fade-in from-right fd1">
+<div class="mv-card-icon">
+<i class="fas fa-eye">
+</i>
+</div>
+<h3>Our Vision</h3>
+<p>To be the most trusted industrial manufacturing partner globally, shaping the future of industry through breakthrough technology, sustainable practices, and partnerships built on integrity and shared ambition.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Â§3 NUMBERS THAT SPEAK -->
+<section class="stats-section">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px" class="fade-in">
+<div class="section-tag" style="color:#fff;justify-content:center">
+<span style="background:#fff;width:28px;height:3px;border-radius:2px;display:inline-block">
+</span>&nbsp;Numbers That Speak</div>
+<h2 class="section-title" style="color:#fff">Our <span>Achievements</span> In Numbers</h2>
+</div>
+<div class="stats-grid">
+<div class="stat-box fade-in fd1">
+<div class="stat-icon">
+<i class="fas fa-industry">
+</i>
+</div>
+<div class="stat-num">
+<span class="counter" data-target="1200">0</span>
+<span class="suffix">+</span>
+</div>
+<div class="stat-label">Projects Completed</div>
+</div>
+<div class="stat-box fade-in fd2">
+<div class="stat-icon">
+<i class="fas fa-users">
+</i>
+</div>
+<div class="stat-num">
+<span class="counter" data-target="500">0</span>
+<span class="suffix">+</span>
+</div>
+<div class="stat-label">Expert Engineers</div>
+</div>
+<div class="stat-box fade-in fd3">
+<div class="stat-icon">
+<i class="fas fa-globe">
+</i>
+</div>
+<div class="stat-num">
+<span class="counter" data-target="48">0</span>
+<span class="suffix">
+</span>
+</div>
+<div class="stat-label">Countries Served</div>
+</div>
+<div class="stat-box fade-in fd4">
+<div class="stat-icon">
+<i class="fas fa-star">
+</i>
+</div>
+<div class="stat-num">
+<span class="counter" data-target="98">0</span>
+<span class="suffix">%</span>
+</div>
+<div class="stat-label">Client Satisfaction</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Â§4 CORE VALUES -->
+<section class="values-section">
+<div class="container">
+<div class="values-header fade-in">
+<div class="section-tag">What Drives Us</div>
+<h2 class="section-title">Our Core <span>Values</span>
+</h2>
+<p class="section-desc">These values are the foundation of everything we do &mdash; from the factory floor to the boardroom.</p>
+</div>
+<div class="values-grid">
+<div class="value-card fade-in fd1">
+<div class="value-icon">
+<i class="fas fa-gem">
+</i>
+</div>
+<h4>Quality First</h4>
+<p>Every component, every weld, every process meets our rigorous quality standards before it leaves our facility.</p>
+</div>
+<div class="value-card fade-in fd2">
+<div class="value-icon">
+<i class="fas fa-lightbulb">
+</i>
+</div>
+<h4>Innovation</h4>
+<p>We invest in R&amp;D to bring cutting-edge solutions that push the boundaries of what industrial manufacturing can achieve.</p>
+</div>
+<div class="value-card fade-in fd3">
+<div class="value-icon">
+<i class="fas fa-leaf">
+</i>
+</div>
+<h4>Sustainability</h4>
+<p>Committed to reducing our environmental footprint through clean energy, waste reduction, and responsible sourcing.</p>
+</div>
+<div class="value-card fade-in fd4">
+<div class="value-icon">
+<i class="fas fa-handshake">
+</i>
+</div>
+<h4>Integrity</h4>
+<p>Transparent communication, honest pricing, and keeping our promises â€” that's how we build lasting partnerships.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Â§5 OUR JOURNEY -->
+<section class="story-section">
+<div class="container">
+<div class="story-header fade-in">
+<div class="section-tag">Our Story</div>
+<h2 class="section-title">Our <span>Journey</span> Through The Years</h2>
+<p class="section-desc" style="margin:0 auto">From a small workshop to a global industrial powerhouse &mdash; the milestones that define us.</p>
+</div>
+<div class="story-grid">
+<div class="story-grid-cell">
+<div class="story-card gsap-card">
+<div class="story-card-inner">
+<div class="story-num">1998.</div>
+<div class="story-img">
+<img src="images/about_factory.webp" alt="1998" loading="lazy">
+</div>
+<h4 class="story-title">The<br>Beginning</h4>
+<p class="story-desc">Founded in a 2,000 sq ft workshop in New York with 12 engineers and a single CNC machine.</p>
+</div>
+</div>
+</div>
+<div class="story-grid-cell">
+<div class="story-card gsap-card">
+<div class="story-card-inner">
+<div class="story-num">2005.</div>
+<div class="story-img">
+<img src="images/about_engineer.webp" alt="2005" loading="lazy">
+</div>
+<h4 class="story-title">First Major<br>Contract</h4>
+<p class="story-desc">Secured a $12M contract with a leading energy company, entering heavy industrial manufacturing.</p>
+</div>
+</div>
+</div>
+<div class="story-grid-cell">
+<div class="story-card gsap-card">
+<div class="story-card-inner">
+<div class="story-num">2011.</div>
+<div class="story-img">
+<img src="images/about_plant.webp" alt="2011" loading="lazy">
+</div>
+<h4 class="story-title">ISO 9001<br>Certification</h4>
+<p class="story-desc">Achieved ISO 9001 certification, validating our world-class quality management systems.</p>
+</div>
+</div>
+</div>
+<div class="story-grid-cell">
+<div class="story-card gsap-card">
+<div class="story-card-inner">
+<div class="story-num">2017.</div>
+<div class="story-img">
+<img src="images/about_team.webp" alt="2017" loading="lazy">
+</div>
+<h4 class="story-title">Global<br>Expansion</h4>
+<p class="story-desc">Opened offices in 12 countries, serving clients across Europe, Asia, and the Middle East.</p>
+</div>
+</div>
+</div>
+<div class="story-grid-cell">
+<div class="story-card gsap-card">
+<div class="story-card-inner">
+<div class="story-num">2024.</div>
+<div class="story-img">
+<img src="images/about_award.webp" alt="2024" loading="lazy">
+</div>
+<h4 class="story-title">Industry<br>Award</h4>
+<p class="story-desc">Received the Global Manufacturing Excellence Award for innovation in sustainable heavy machinery fabrication.</p>
+</div>
+</div>
+</div>
+<div class="story-grid-cell">
+<div class="story-card gsap-card">
+<div class="story-card-inner">
+<div class="story-num">2026.</div>
+<div class="story-img">
+<img src="images/about_future.webp" alt="2026" loading="lazy">
+</div>
+<h4 class="story-title">Future<br>Vision</h4>
+<p class="story-desc">Embracing AI-driven manufacturing and zero-emission goals as we lead the industry into the next era.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Â§6 WHY CHOOSE US -->
+<section class="why-about-section">
+<div class="container">
+<div class="why-about-grid">
+<div class="why-about-img fade-in from-left">
+<img src="images/about_engineer.webp" alt="Stackly Engineer At Work" loading="lazy">
+</div>
+<div class="fade-in from-right">
+<div class="section-tag">Why Choose Us</div>
+<h2 class="section-title">We Deliver <span>Excellence</span> At Every Step</h2>
+<p class="section-desc">Choosing Stackly means choosing a partner with proven expertise, cutting-edge technology, and a commitment to your success.</p>
+<div class="why-about-features">
+<div class="why-feat">
+<div class="why-feat-icon">
+<i class="fas fa-cogs">
+</i>
+</div>
+<div>
+<h5>Advanced Technology</h5>
+<p>State-of-the-art CNC machining, robotic welding, and AI-assisted quality inspection across all facilities.</p>
+</div>
+</div>
+<div class="why-feat">
+<div class="why-feat-icon">
+<i class="fas fa-shield-alt">
+</i>
+</div>
+<div>
+<h5>Safety &amp; Compliance</h5>
+<p>Zero-compromise safety culture with full regulatory compliance across all international markets.</p>
+</div>
+</div>
+<div class="why-feat">
+<div class="why-feat-icon">
+<i class="fas fa-clock">
+</i>
+</div>
+<div>
+<h5>On-Time Delivery</h5>
+<p>97.8% on-time project delivery rate backed by rigorous planning and real-time production tracking.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Â§7 MEET THE TEAM -->
+<section class="team-section">
+<div class="container">
+<div class="team-header fade-in">
+<div class="section-tag">The People Behind It</div>
+<h2 class="section-title">Meet Our <span>Expert</span> Team</h2>
+<p class="section-desc" style="color:#aaa;margin:0 auto">World-class engineers, visionary leaders, and passionate professionals dedicated to building the future of industry.</p>
+</div>
+<div class="team-grid">
+<div class="team-card fade-in from-left">
+<div class="team-photo">
+<img src="images/team_ceo.webp" alt="Robert Hayes CEO">
+</div>
+<div class="team-info">
+<h4>Robert Hayes</h4>
+<div class="team-role">Founder &amp; CEO</div>
+<p class="team-bio">With 30 years in heavy industry, Robert has led Stackly from a local workshop to a global manufacturing powerhouse.</p>
+<div class="team-socials">
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+<a href="404.html">
+<i class="fas fa-envelope">
+</i>
+</a>
+</div>
+</div>
+</div>
+<div class="team-card fade-in fd1">
+<div class="team-photo">
+<img src="images/team_engineer.webp" alt="Sarah Mitchell CTO">
+</div>
+<div class="team-info">
+<h4>Sarah Mitchell</h4>
+<div class="team-role">Chief Technology Officer</div>
+<p class="team-bio">Sarah drives our R&amp;D agenda, pioneering smart manufacturing technologies and sustainable production systems.</p>
+<div class="team-socials">
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+<a href="404.html">
+<i class="fas fa-envelope">
+</i>
+</a>
+</div>
+</div>
+</div>
+<div class="team-card fade-in from-right fd2">
+<div class="team-photo">
+<img src="images/team_manager.webp" alt="David Kim Operations">
+</div>
+<div class="team-info">
+<h4>David Kim</h4>
+<div class="team-role">Director of Operations</div>
+<p class="team-bio">David oversees global production operations, ensuring every facility meets our exceptional quality and safety standards.</p>
+<div class="team-socials">
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+<a href="404.html">
+<i class="fas fa-envelope">
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Â§8 TESTIMONIALS -->
+<section class="testimonials-about">
+<div class="container">
+<div class="team-header fade-in">
+<div class="section-tag" style="color:var(--primary-color)">Client Stories</div>
+<h2 class="section-title" style="color:var(--secondary-color)">What Our <span>Clients</span> Say</h2>
+<p class="section-desc" style="margin:0 auto">Here's what our partners across the globe say about working with Stackly.</p>
+</div>
+<div class="testi-grid">
+<div class="testi-card">
+<div class="testi-quote-badge">&ldquo;</div>
+<div class="testi-stars">
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+</div>
+<p class="testi-text">Stackly delivered our entire refinery expansion on time and 8% under budget. Their engineering precision is unmatched â€” we have partnered with them on 6 projects now.</p>
+<div class="testi-author">
+<div class="testi-avatar">JM</div>
+<div>
+<div class="testi-name">James Morrison</div>
+<div class="testi-company">VP Engineering, PetroCorp USA</div>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-quote-badge">&ldquo;</div>
+<div class="testi-stars">
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+</div>
+<p class="testi-text">The quality of Stackly's fabrication work is exceptional. Their team understood our complex requirements from day one and delivered a flawless result. Highly recommended.</p>
+<div class="testi-author">
+<div class="testi-avatar">AL</div>
+<div>
+<div class="testi-name">Anika Lund</div>
+<div class="testi-company">Plant Manager, EuroSteel GmbH</div>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-quote-badge">&ldquo;</div>
+<div class="testi-stars">
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star">
+</i>
+<i class="fas fa-star-half-alt">
+</i>
+</div>
+<p class="testi-text">From initial design to final commissioning, Stackly was with us every step. Their 24/7 support team and technical expertise made our plant upgrade seamless.</p>
+<div class="testi-author">
+<div class="testi-avatar">RK</div>
+<div>
+<div class="testi-name">Rajan Kumar</div>
+<div class="testi-company">CEO, AsiaFab Industries</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-inner reveal-up">
+<div class="footer-cta">
+<div class="footer-logo">
+<a href="index.html"><img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 40px; display: block;"></a>
+</div>
+<h2 class="footer-headline">Let's engineer your next<br>
+<em>production line.</em>
+</h2>
+<a href="404.html" class="footer-cta-btn">Start a Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="7" y1="17" x2="17" y2="7"/>
+<polyline points="7 7 17 7 17 17"/>
+</svg>
+</a>
+</div>
+<div class="footer-col">
+<h4>Company</h4>
+<ul>
+<li>
+<a href="404.html">Get a Quote</a>
+</li>
+<li>
+<a href="404.html">FAQ</a>
+</li>
+<li>
+<a href="404.html">Terms of Service</a>
+</li>
+<li>
+<a href="404.html">Privacy Policy</a>
+</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="about.html">About Us</a>
+</li>
+<li>
+<a href="projects.html">Projects</a>
+</li>
+<li>
+<a href="blog.html">Blog</a>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Get In Touch</h4>
+<ul>
+<li>
+<a href="404.html">MMR Complex, Salem - 636 003, Tamil Nadu, India</a>
+</li>
+<li>
+<a href="404.html">+91 74880 99999</a>
+</li>
+<li>
+<a href="404.html">info@stackly.com</a>
+</li>
+<li>
+<a href="404.html">Mon &ndash; Sat: 8:00am &ndash; 6:00pm</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="container">
+<p>&copy; 2026 Stackly Clone. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script src="script.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js">
+</script>
+<script>     gsap.registerPlugin(ScrollTrigger);     gsap.utils.toArray('.gsap-card').forEach((card) => {         gsap.from(card, {             scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play none none none" },             y: 40, opacity: 0, duration: 0.8, ease: "power3.out"         });         gsap.from(card.querySelectorAll(".story-num, .story-img, .story-title, .story-desc"), {             scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play none none none" },             y: 20, opacity: 0, duration: 0.6, stagger: 0.12, delay: 0.2, ease: "power2.out"         });     });      const faders = document.querySelectorAll('.fade-in');     const io = new IntersectionObserver(entries => {         entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });     }, { threshold: 0.12 });     faders.forEach(el => io.observe(el));      const counters = document.querySelectorAll('.counter');     const cio = new IntersectionObserver(entries => {         entries.forEach(e => {             if(!e.isIntersecting) return;             const el = e.target, target = +el.dataset.target, dur = 1800, step = target/(dur/16);             let cur = 0;             const tick = () => { cur = Math.min(cur+step,target); el.textContent = Math.floor(cur).toLocaleString(); if(cur<target) requestAnimationFrame(tick); };             tick(); cio.unobserve(el);         });     }, { threshold: 0.4 });     counters.forEach(el => cio.observe(el));     </script>
+</body>
+</html>  
+

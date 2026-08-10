@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Stackly Industrial Theme</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>         /* Shared Header Styles (Matches Projects Page) */         .portfolio-section, .process-section { padding: 80px 0; }         .portfolio-header{text-align:center;margin-bottom:45px}         .portfolio-header .section-tag{margin:0 auto 14px}         .portfolio-header .section-desc{margin:0 auto}         .section-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--primary-color);margin-bottom:14px}         .section-tag::before{content:'';width:28px;height:3px;background:var(--primary-color);border-radius:2px}         .section-title{font-family:var(--font-heading);font-size:clamp(30px,4vw,46px);font-weight:700;line-height:1.2;color:var(--secondary-color);margin-bottom:20px}         .section-title span{color:var(--primary-color)}         .section-desc{font-size:16px;line-height:1.8;color:#666;max-width:600px;margin-bottom:30px}         .glass-panel .section-tag::before { background: #fff; }                  /* Premium Blog Styles */         .page-banner { padding: 160px 0; background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.85)), url('images/about_plant.webp') center/cover no-repeat; border: none; }         .featured-section { padding: 120px 0; background: #fff; }         .premium-featured-card { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.15); display: flex; align-items: center; min-height: 550px; }         .premium-featured-bg { position: absolute; inset: 0; }         .premium-featured-bg img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }         .premium-featured-card:hover .premium-featured-bg img { transform: scale(1.05); }         .premium-featured-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 100%); }         .premium-featured-content { position: relative; z-index: 10; max-width: 600px; padding: 60px; color: #fff; }         .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 45px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }         .glass-panel .section-title { color: #fff; font-size: 42px; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }         .glass-panel .section-desc { color: #e0e0e0; font-size: 16px; line-height: 1.8; margin-bottom: 30px; }                  /* New Animated Premium Cards */         .premium-card { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); height: 420px; display: flex; align-items: flex-end; transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; }         .premium-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }         .premium-card-img-wrap { position: absolute; inset: 0; z-index: 1; }         .premium-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }         .premium-card:hover .premium-card-img-wrap img { transform: scale(1.15); }         .premium-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.3) 60%, rgba(17,17,17,0) 100%); z-index: 2; transition: all 0.5s ease; opacity: 0.9; }         .premium-card:hover::before { opacity: 1; background: linear-gradient(to top, rgba(255,94,20,0.95) 0%, rgba(17,17,17,0.6) 70%, rgba(17,17,17,0) 100%); }                  .premium-card-content { position: relative; z-index: 3; padding: 40px 30px; width: 100%; transform: translateY(35px); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }         .premium-card:hover .premium-card-content { transform: translateY(0); }         .premium-card .section-tag { background: var(--primary-color); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 11px; margin-bottom: 15px; display: inline-block; border: none; letter-spacing: 1px; }         .premium-card .section-tag::before { display: none; }         .premium-card h3 { font-family: var(--font-heading); font-size: 26px; margin-bottom: 10px; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: color 0.3s; }         .premium-card p { font-size: 15px; color: rgba(255,255,255,0.85); margin-bottom: 0; opacity: 0; transition: all 0.5s ease; max-height: 0; overflow: hidden; line-height: 1.6; }         .premium-card:hover p { opacity: 1; max-height: 100px; margin-bottom: 25px; margin-top: 15px; }                  .read-more-link { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; text-decoration: none; position: relative; }         .read-more-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #fff; transition: width 0.3s; }         .premium-card:hover .read-more-link::after { width: 100%; }         .read-more-link i { transition: transform 0.3s; }         .premium-card:hover .read-more-link i { transform: translateX(6px); animation: pulse-icon 1s infinite; }          .author-card { background: #fff; padding: 0 0 40px; border-radius: 16px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; overflow: hidden; border: 1px solid #f9f9f9; cursor: pointer; }         .author-card-bg { position: absolute; top: 0; left: 0; width: 100%; height: 130px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); opacity: 0.1; transition: all 0.5s ease; z-index: 1; }         .author-card:hover { transform: translateY(-15px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }         .author-card:hover .author-card-bg { opacity: 1; height: 100%; background: linear-gradient(135deg, var(--secondary-color), #111); }         .author-img-wrap { position: relative; z-index: 2; padding-top: 40px; margin-bottom: 25px; }         .author-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 6px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.15); margin: 0 auto; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s; display: block; position: relative; z-index: 2; }         .author-card:hover .author-img { transform: scale(1.1) rotate(5deg); border-color: var(--primary-color); }         .author-info { position: relative; z-index: 2; padding: 0 30px; transition: color 0.4s; }         .author-card h3 { font-family: var(--font-heading); font-size: 24px; margin-bottom: 5px; color: #111; transition: color 0.4s; position: relative; z-index: 2; }         .author-card:hover h3 { color: #fff; }         .author-role { font-size: 13px; color: var(--primary-color); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 15px; display: block; transition: color 0.4s; position: relative; z-index: 2; }         .author-card:hover .author-role { color: #ccc; }         .author-card p { font-size: 15px; color: #666; line-height: 1.7; transition: color 0.4s; position: relative; z-index: 2; }         .author-card:hover p { color: rgba(255,255,255,0.8); }         .author-socials { display: flex; justify-content: center; gap: 15px; margin-top: 20px; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; position: relative; z-index: 2; }         .author-card:hover .author-socials { opacity: 1; transform: translateY(0); }         .author-socials a { color: #fff; font-size: 16px; background: rgba(255,255,255,0.15); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.3s, transform 0.3s; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); }         .author-socials a:hover { background: var(--primary-color); transform: translateY(-5px); border-color: var(--primary-color); }                  .premium-cta { position: relative; padding: 140px 0; background: url('images/faq-bg.webp') center/cover fixed; text-align: center; color: #fff; overflow: hidden; }         .premium-cta-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(17,17,17,0.92), rgba(255,94,20,0.85)); }         .premium-cta .container { position: relative; z-index: 10; }         .premium-cta h2 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 48px); margin-bottom: 20px; }         .premium-input-group { display: flex; max-width: 600px; margin: 40px auto 0; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 50px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; }         .premium-input-group:focus-within { background: rgba(255,255,255,0.15); box-shadow: 0 0 25px rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }         .premium-input-group input { flex-grow: 1; background: transparent; border: none; padding: 0 25px; color: #fff; font-family: var(--font-heading); font-size: 16px; outline: none; }         .premium-input-group input::placeholder { color: rgba(255,255,255,0.7); }         .premium-input-group button { background: var(--primary-color); color: #fff; border: none; padding: 18px 40px; border-radius: 40px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; }         .premium-input-group button:hover { background: #fff; color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }          /* Grid Layouts */         .process-grid, .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }         @media(max-width: 1024px) { .process-grid, .proj-grid { grid-template-columns: repeat(2, 1fr); } }         @media(max-width: 768px) { .process-grid, .proj-grid { grid-template-columns: 1fr; } }          /* Staggered list animations */         .stagger-item { opacity: 0; transform: translateY(30px); }                  /* New pulse animation */         @keyframes pulse-icon { 0% { transform: scale(1); } 50% { transform: scale(1.3); color: var(--secondary-color); } 100% { transform: scale(1); } }         .premium-card:hover .read-more-link i { animation: pulse-icon 1s infinite; transform: translateX(8px); }          /* Classic Blog Layout */         .classic-blog-section { padding: 80px 0; background: #f9f9f9; }         .classic-blog-container { display: grid; grid-template-columns: 1.8fr 1fr; gap: 50px; align-items: start; }         @media(max-width: 1024px) { .classic-blog-container { grid-template-columns: 1fr; } }                  /* Main Post */         .main-post-img { width: 100%; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transition: transform 0.5s ease; }         .main-post-img:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }         .main-post-meta { font-size: 13px; color: #888; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-bottom: 15px; display: flex; gap: 15px; }         .main-post-meta span { color: #555; }         .main-post h3 { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 42px); line-height: 1.2; margin-bottom: 25px; color: var(--secondary-color); }         .main-post p { font-size: 17px; color: #444; line-height: 1.9; margin-bottom: 25px; letter-spacing: 0.3px; }                  .main-post blockquote { background: #fdfbf7; padding: 40px; border-left: 5px solid var(--primary-color); margin: 30px 0; font-size: 18px; font-style: italic; color: #333; line-height: 1.6; border-radius: 0 12px 12px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }                  /* Sidebar */         .sidebar { background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); position: sticky; top: 120px; align-self: start; }         .search-widget { margin-bottom: 45px; }         .search-widget input { width: 100%; padding: 16px 20px; border: 1px solid #eaeaea; border-radius: 8px; outline: none; background: #fcfcfc; font-size: 15px; transition: border-color 0.3s; }         .search-widget input:focus { border-color: var(--primary-color); }         .widget-title { font-family: var(--font-heading); font-size: 22px; margin-bottom: 25px; color: var(--secondary-color); padding-bottom: 15px; border-bottom: 1px solid #eee; }                  .recent-post-item { display: flex; gap: 20px; margin-bottom: 25px; align-items: center; }         .recent-post-item:last-child { margin-bottom: 0; }         .recent-post-img { width: 80px; height: 80px; border-radius: 12px; object-fit: cover; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }         .recent-post-item:hover .recent-post-img { transform: scale(1.05); }         .recent-post-content h4 { font-family: var(--font-heading); font-size: 16px; line-height: 1.4; margin-bottom: 8px; }         .recent-post-content h4 a { color: var(--secondary-color); text-decoration: none; transition: color 0.3s; }         .recent-post-content h4 a:hover { color: var(--primary-color); }         .recent-post-content .date { font-size: 13px; color: #888; }                  /* Blog Category Cards */         .cat-card { position: relative; border-radius: 16px; overflow: hidden; height: 360px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease; cursor: pointer; display: block; text-decoration: none; }         .cat-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }         .cat-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }         .cat-card:hover .cat-card-img { transform: scale(1.12); }         .cat-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.2) 60%, rgba(17,17,17,0) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 35px; transition: background 0.5s; z-index: 2; }         .cat-card:hover .cat-card-overlay { background: linear-gradient(to top, rgba(255,94,20,0.95) 0%, rgba(17,17,17,0.4) 70%, rgba(17,17,17,0) 100%); }         .cat-count { background: #fff; color: var(--primary-color); font-weight: 700; font-size: 13px; padding: 6px 16px; border-radius: 20px; align-self: flex-start; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s, background 0.3s, color 0.3s; }         .cat-card:hover .cat-count { background: #111; color: #fff; transform: translateY(-5px); }         .cat-title { color: #fff; font-family: var(--font-heading); font-size: 26px; margin-bottom: 5px; transition: transform 0.3s; transform: translateY(0); text-shadow: 0 2px 10px rgba(0,0,0,0.3); }         .cat-card:hover .cat-title { transform: translateY(-5px); }         .cat-link { color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(15px); transition: all 0.4s ease; max-height: 0; overflow: hidden; }         .cat-card:hover .cat-link { opacity: 1; transform: translateY(0); max-height: 50px; margin-top: 15px; }         .cat-link i { transition: transform 0.3s; }         .cat-card:hover .cat-link i { transform: translateX(6px); animation: pulse-icon 1s infinite; }         @media(max-width: 768px) { .premium-featured-content { padding: 30px 15px; } .glass-panel { padding: 25px 15px; } .premium-featured-card { min-height: auto; padding: 20px 0; } .portfolio-header .section-tag { transform: translateX(-18px); } .premium-input-group { flex-direction: column; border-radius: 20px; background: transparent; border: none; padding: 0; gap: 15px; } .premium-input-group input { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 50px; width: 100%; box-sizing: border-box; } .premium-input-group button { width: 100%; border-radius: 50px; } }     </style>
+</head>
+<body>
+<div class="top-bar">
+<div class="container top-bar-inner">
+<div class="top-bar-left">
+<p>
+<i class="fas fa-map-marker-alt">
+</i> MMR Complex, Salem - 636 003, Tamil Nadu, India</p>
+<p>
+<i class="fas fa-clock">
+</i> Mon - Sat: 8:00 am - 6:00 pm</p>
+</div>
+<div class="top-bar-right">
+<a href="404.html">
+<i class="fab fa-facebook-f">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-youtube">
+</i>
+</a>
+</div>
+</div>
+</div>
+<header class="header" id="header">
+<div class="container header-inner">
+<div class="logo" style="display:flex;align-items:center;">
+<a href="index.html"><img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 40px; display: block;"></a>
+</div>
+<nav class="nav-menu">
+<ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="about.html">About Us</a>
+</li>
+<li>
+<a href="projects.html">Projects</a>
+</li>
+<li>
+<a href="blog.html" class="active">Blog</a>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+
+<li class="mobile-login-item">
+<a href="login.html" class="btn btn-primary" style="padding: 10px 30px; font-size: 16px;">Login</a>
+</li>
+</ul>
+</nav>
+<div class="header-right">
+<div class="contact-info">
+<i class="fas fa-phone-alt">
+</i>
+<div>
+<span>Call Us Anytime</span>
+<strong>+91 74880 99999</strong>
+</div>
+</div>
+<a href="login.html" class="btn btn-primary">Login</a>
+<button class="mobile-menu-btn">
+<i class="fas fa-bars">
+</i>
+</button>
+</div>
+</div>
+</header>
+<!-- SECTION 1: HERO BANNER -->
+<div class="page-banner">
+<div class="container">
+<h1 class="gsap-reveal">Industrial <span>Insights</span>
+</h1>
+<div class="breadcrumb gsap-reveal">
+<a href="index.html">Home</a> / <span>Blog</span>
+</div>
+</div>
+</div>
+<!-- SECTION 2: PREMIUM FEATURED POST -->
+<section class="featured-section">
+<div class="container">
+<div class="premium-featured-card gsap-reveal">
+<div class="premium-featured-bg">
+<img src="images/about_future.webp" alt="Featured Post Image" class="parallax-img">
+</div>
+<div class="premium-featured-overlay">
+</div>
+<div class="premium-featured-content">
+<div class="glass-panel">
+<div class="section-tag" style="color:#fff;">Featured Article</div>
+<h2 class="section-title">The Future of <span>Manufacturing</span> & Automation</h2>
+<p class="section-desc">Discover how AI and state-of-the-art robotics are completely overhauling traditional assembly plants, increasing production efficiency and reducing downtime to near zero.</p>
+<ul class="featured-list" style="color:#fff; border-top:1px solid rgba(255,255,255,0.2); padding-top:20px; margin-bottom:30px;">
+<li style="color:#fff;">
+<i class="fas fa-user" style="color:var(--primary-color);">
+</i> By John Doe</li>
+<li style="color:#fff;">
+<i class="fas fa-calendar-alt" style="color:var(--primary-color);">
+</i> Aug 9, 2026</li>
+</ul>
+<a href="404.html" class="btn btn-primary" style="box-shadow:0 10px 20px rgba(255,94,20,0.3);">Read Full Article</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: RECENT UPDATES (CLASSIC LAYOUT) -->
+<section class="classic-blog-section">
+<div class="container">
+<div class="portfolio-header gsap-reveal">
+<div class="section-tag">Latest News</div>
+<h2 class="section-title">Recent <span>Updates</span>
+</h2>
+<p class="section-desc">Stay informed with the latest insights, strategies, and technological breakthroughs across the manufacturing industry.</p>
+</div>
+</div>
+<div class="container classic-blog-container">
+<!-- Main Post -->
+<div class="main-post gsap-reveal">
+<img src="images/about_plant.webp" alt="Manufacturing Plant" class="main-post-img" id="main-post-img">
+<div class="main-post-meta">
+<span>ADMIN</span> &nbsp;&nbsp;|&nbsp;&nbsp; <span id="main-post-category">MANUFACTURING</span> &nbsp;&nbsp;|&nbsp;&nbsp; <span id="main-post-date">JULY 15, 2026</span>
+</div>
+<h3 id="main-post-title">Debunking Myths About Manufacturing Safety Standards</h3>
+<div id="main-post-body">
+<p>Industrial safety standards are often surrounded by misconceptions that can lead to a lack of compliance and increased risk in the workplace. Many people believe these standards are either overly stringent or unnecessary, which can create a culture of negligence. Understanding the facts behind these regulations is crucial for both employers and employees in maintaining a safe work environment.</p>
+<blockquote>                         "Safety standards are not just guidelines; they are essential frameworks designed to protect lives and ensure workplace efficiency in modern manufacturing facilities."                     </blockquote>
+</div>
+</div>
+<!-- Sidebar -->
+<div class="sidebar gsap-reveal">
+<div class="search-widget">
+<input type="text" placeholder="Search ...">
+</div>
+<div class="recent-posts-widget">
+<h3 class="widget-title">Recent posts</h3>
+<div class="recent-post-item">
+<img src="images/proj_assembly.webp" alt="Sustainable Practices in Assembly Lines" class="recent-post-img">
+<div class="recent-post-content">
+<h4>
+<a href="#" onclick="loadPost(event, 'post-1')">Exploring Sustainable Practices in Assembly Lines</a>
+</h4>
+<div class="date">July 15, 2026</div>
+</div>
+</div>
+<div class="recent-post-item">
+<img src="images/solution-chemical.webp" alt="Chemical Manufacturing" class="recent-post-img">
+<div class="recent-post-content">
+<h4>
+<a href="#" onclick="loadPost(event, 'post-2')">The Future of Chemical Manufacturing</a>
+</h4>
+<div class="date">July 15, 2026</div>
+</div>
+</div>
+<div class="recent-post-item">
+<img src="images/about_engineer.webp" alt="Engineering Design" class="recent-post-img">
+<div class="recent-post-content">
+<h4>
+<a href="#" onclick="loadPost(event, 'post-3')">10 Essential Tips for Engineering Design</a>
+</h4>
+<div class="date">July 12, 2026</div>
+</div>
+</div>
+<div class="recent-post-item">
+<img src="images/proj_solar.webp" alt="Energy Hurdles" class="recent-post-img">
+<div class="recent-post-content">
+<h4>
+<a href="#" onclick="loadPost(event, 'post-4')">Overcoming Energy Hurdles in Production</a>
+</h4>
+<div class="date">July 10, 2026</div>
+</div>
+</div>
+<div class="recent-post-item">
+<img src="images/proj_machinery.webp" alt="Modern Factory Layouts" class="recent-post-img">
+<div class="recent-post-content">
+<h4>
+<a href="#" onclick="loadPost(event, 'post-5')">The Evolution of Modern Factory Layouts</a>
+</h4>
+<div class="date">July 08, 2026</div>
+</div>
+</div>
+</div>
+<div class="sidebar-widget" style="margin-top: 45px;">
+<h3 class="widget-title">Categories</h3>
+<ul style="list-style: none; padding: 0; margin: 0;">
+<li style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+<a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='#666'">
+<span>Engineering</span>
+<span style="background: #f4f4f4; padding: 2px 8px; border-radius: 4px; font-size: 12px; color: #555;">12</span>
+</a>
+</li>
+<li style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+<a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='#666'">
+<span>Manufacturing</span>
+<span style="background: #f4f4f4; padding: 2px 8px; border-radius: 4px; font-size: 12px; color: #555;">8</span>
+</a>
+</li>
+<li style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+<a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='#666'">
+<span>Automation</span>
+<span style="background: #f4f4f4; padding: 2px 8px; border-radius: 4px; font-size: 12px; color: #555;">24</span>
+</a>
+</li>
+<li style="margin-bottom: 0;">
+<a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='#666'">
+<span>Safety Standards</span>
+<span style="background: #f4f4f4; padding: 2px 8px; border-radius: 4px; font-size: 12px; color: #555;">5</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: CATEGORIES -->
+<section class="portfolio-section" style="background:#fff">
+<div class="container">
+<div class="portfolio-header gsap-reveal">
+<div class="section-tag">Explore Topics</div>
+<h2 class="section-title">Blog <span>Categories</span>
+</h2>
+</div>
+<div class="proj-grid stagger-grid">
+<a href="404.html" class="cat-card stagger-item">
+<img src="images/solution-robotics.webp" alt="Automation Robotics" class="cat-card-img">
+<div class="cat-card-overlay">
+<span class="cat-count">24 Posts</span>
+<h3 class="cat-title">Automation & Robotics</h3>
+<div class="cat-link">Explore Category <i class="fas fa-arrow-right">
+</i>
+</div>
+</div>
+</a>
+<a href="404.html" class="cat-card stagger-item">
+<img src="images/solution-chemical.webp" alt="Chemical Processing" class="cat-card-img">
+<div class="cat-card-overlay">
+<span class="cat-count">18 Posts</span>
+<h3 class="cat-title">Chemical Processing</h3>
+<div class="cat-link">Explore Category <i class="fas fa-arrow-right">
+</i>
+</div>
+</div>
+</a>
+<a href="404.html" class="cat-card stagger-item">
+<img src="images/about_plant.webp" alt="Safety Standards" class="cat-card-img">
+<div class="cat-card-overlay">
+<span class="cat-count">12 Posts</span>
+<h3 class="cat-title">Safety Standards</h3>
+<div class="cat-link">Explore Category <i class="fas fa-arrow-right">
+</i>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- SECTION 5: EXPERT AUTHORS -->
+<section class="process-section" style="background:#f9f9f9">
+<div class="container">
+<div class="portfolio-header gsap-reveal">
+<div class="section-tag">Our Writers</div>
+<h2 class="section-title">Expert <span>Authors</span>
+</h2>
+</div>
+<div class="process-grid stagger-grid">
+<div class="author-card stagger-item">
+<div class="author-card-bg">
+</div>
+<div class="author-img-wrap">
+<img src="images/team_ceo.webp" alt="Author" class="author-img">
+</div>
+<div class="author-info">
+<h3>Michael Chang</h3>
+<span class="author-role">Chief Engineer</span>
+<p>Writing about structural integrity and large-scale industrial planning.</p>
+<div class="author-socials">
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+</div>
+</div>
+</div>
+<div class="author-card stagger-item">
+<div class="author-card-bg">
+</div>
+<div class="author-img-wrap">
+<img src="images/team_engineer.webp" alt="Author" class="author-img">
+</div>
+<div class="author-info">
+<h3>Sarah Jenkins</h3>
+<span class="author-role">Safety Director</span>
+<p>Sharing insights on workplace safety and new OSHA regulations.</p>
+<div class="author-socials">
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+</div>
+</div>
+</div>
+<div class="author-card stagger-item">
+<div class="author-card-bg">
+</div>
+<div class="author-img-wrap">
+<img src="images/team_manager.webp" alt="Author" class="author-img">
+</div>
+<div class="author-info">
+<h3>David Miller</h3>
+<span class="author-role">Operations Manager</span>
+<p>Focuses on logistics, supply chain efficiency, and daily plant operations.</p>
+<div class="author-socials">
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: PREMIUM CTA -->
+<section class="premium-cta">
+<div class="premium-cta-overlay">
+</div>
+<div class="container gsap-reveal">
+<h2>Never Miss An Industrial Update</h2>
+<p style="font-size:18px; margin-bottom:10px; color:#fff; opacity:0.9;">Join 15,000+ engineers subscribed to our insights.</p>
+<form action="404.html" method="GET" class="premium-input-group">
+<input type="email" placeholder="Enter Your Email Address..." required>
+<button type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-inner">
+<div class="footer-cta">
+<div class="footer-logo">
+<a href="index.html"><img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 40px; display: block;"></a>
+</div>
+<h2 class="footer-headline">Let's engineer your next<br>
+<em>production line.</em>
+</h2>
+<a href="404.html" class="footer-cta-btn">Start a Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="7" y1="17" x2="17" y2="7"/>
+<polyline points="7 7 17 7 17 17"/>
+</svg>
+</a>
+</div>
+<div class="footer-col">
+<h4>Company</h4>
+<ul>
+<li>
+<a href="404.html">Get a Quote</a>
+</li>
+<li>
+<a href="404.html">FAQ</a>
+</li>
+<li>
+<a href="404.html">Terms of Service</a>
+</li>
+<li>
+<a href="404.html">Privacy Policy</a>
+</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="about.html">About Us</a>
+</li>
+<li>
+<a href="projects.html">Projects</a>
+</li>
+<li>
+<a href="blog.html">Blog</a>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Get In Touch</h4>
+<ul>
+<li>
+<a href="404.html">MMR Complex, Salem - 636 003, Tamil Nadu, India</a>
+</li>
+<li>
+<a href="404.html">+91 74880 99999</a>
+</li>
+<li>
+<a href="404.html">info@stackly.com</a>
+</li>
+<li>
+<a href="404.html">Mon &ndash; Sat: 8:00am &ndash; 6:00pm</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="container">
+<p>&copy; 2026 Stackly Clone. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js">
+</script>
+<script>         gsap.registerPlugin(ScrollTrigger);          gsap.utils.toArray('section, .page-banner').forEach(section => {             const elements = section.querySelectorAll('.gsap-reveal');             if (elements.length > 0) {                 gsap.to(elements, {                     scrollTrigger: {                         trigger: section,                         start: "top 85%"                     },                     y: 0,                     opacity: 1,                     duration: 1,                     stagger: 0.2,                     ease: "power3.out"                 });             }         });          gsap.utils.toArray('.stagger-grid').forEach(grid => {             const items = grid.querySelectorAll('.stagger-item');             gsap.to(items, {                 scrollTrigger: {                     trigger: grid,                     start: "top 80%"                 },                 y: 0,                 opacity: 1,                 duration: 0.8,                 stagger: 0.15,                 ease: "back.out(1.2)"             });         });          gsap.to('.parallax-img', {             yPercent: 15,             ease: "none",             scrollTrigger: {                 trigger: ".premium-featured-card",                 start: "top bottom",                 end: "bottom top",                 scrub: true             }         });          /* Posts */ const blogPosts = {             'post-1': {                 title: 'Exploring Sustainable Practices in Assembly Lines',                 img: 'images/solution1.webp',                 category: 'SUSTAINABILITY',                 date: 'JULY 15, 2026',                 content: `<p>The manufacturing sector is undergoing a massive shift towards green energy and sustainable processing. Assembly lines, traditionally heavy consumers of power, are now being retrofitted with smart sensors and energy-efficient motors.</p>
+<blockquote>"Sustainability in manufacturing isn't just about reducing carbon footprints; it's about building resilient, future-proof operations."</blockquote>`             },             'post-2': {                 title: 'The Future of Chemical Manufacturing',                 img: 'images/solution3.webp',                 category: 'CHEMICAL PROCESSING',                 date: 'JULY 15, 2026',                 content: `<p>Chemical processing plants are adopting AI-driven monitoring systems to predict reactions and optimize yields. This shift not only increases production efficiency but drastically reduces hazardous waste.</p>
+<blockquote>"Data is the new catalyst. AI systems can optimize chemical syntheses in ways human operators simply cannot match."</blockquote>`             },             'post-3': {                 title: '10 Essential Tips for Engineering Design',                 img: 'images/about_engineer.webp',                 category: 'ENGINEERING',                 date: 'JULY 12, 2026',                 content: `<p>Great engineering design is the foundation of every successful industrial project. From initial CAD models to final stress testing, every step requires meticulous attention to detail and material science.</p>
+<blockquote>"A design is only as good as its weakest joint. Over-engineering is expensive, but under-engineering is catastrophic."</blockquote>`             },             'post-4': {                 title: 'Overcoming Energy Hurdles in Production',                 img: 'images/about_plant.webp',                 category: 'ENERGY',                 date: 'JULY 10, 2026',                 content: `<p>Energy costs remain one of the highest overheads for heavy manufacturing. Overcoming these hurdles requires a multi-faceted approach, including peak-shaving technologies and localized microgrids.</p>
+<blockquote>"The cheapest energy is the energy you don't use. Efficiency is the first step in any robust energy strategy."</blockquote>`             },             'post-5': {                 title: 'The Evolution of Modern Factory Layouts',                 img: 'images/about_factory.webp',                 category: 'PLANT DESIGN',                 date: 'JULY 08, 2026',                 content: `<p>Gone are the days of rigid, linear assembly lines. Modern factories embrace modular layouts that can be rapidly reconfigured to handle different product runs and adapt to changing market demands.</p>
+<blockquote>"Flexibility is the ultimate competitive advantage. If your factory can't pivot in a weekend, you're already behind."</blockquote>`             }         };          function loadPost(e, postId) {             e.preventDefault();             const post = blogPosts[postId];             if(!post) return;                          const mainContainer = document.querySelector('.main-post');                          gsap.to(mainContainer, {opacity: 0, y: 15, duration: 0.3, onComplete: () => {                 document.getElementById('main-post-img').src = post.img;                 document.getElementById('main-post-category').innerText = post.category;                 document.getElementById('main-post-date').innerText = post.date;                 document.getElementById('main-post-title').innerText = post.title;                 document.getElementById('main-post-body').innerHTML = post.content;                                  gsap.to(mainContainer, {opacity: 1, y: 0, duration: 0.5, ease: "power2.out"});             }});         }     </script>
+<script src="script.js"></script>
+</body>
+</html>
+

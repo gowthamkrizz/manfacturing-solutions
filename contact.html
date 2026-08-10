@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Stackly Industrial Theme</title>
+<meta name="description" content="Get in touch with Stackly Industrial. We operate global manufacturing plants and are ready to help engineer your next project.">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>         /* === SHARED === */         .section-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--primary-color);margin-bottom:14px}         .section-tag::before{content:'';width:28px;height:3px;background:var(--primary-color);border-radius:2px}         .section-title{font-family:var(--font-heading);font-size:clamp(30px,4vw,46px);font-weight:700;line-height:1.2;color:var(--secondary-color);margin-bottom:20px}         .section-title span{color:var(--primary-color)}         .section-desc{font-size:16px;line-height:1.8;color:#666;max-width:580px;margin-bottom:30px}         /* Animations are CSS-driven â€” no GSAP dependency for visibility */         .reveal-item{opacity:0;transform:translateY(40px);animation:revealUp 0.8s ease forwards}         .reveal-item:nth-child(1){animation-delay:0.1s}         .reveal-item:nth-child(2){animation-delay:0.2s}         .reveal-item:nth-child(3){animation-delay:0.3s}         .reveal-item:nth-child(4){animation-delay:0.4s}         @keyframes revealUp{to{opacity:1;transform:translateY(0)}}         .scroll-reveal{opacity:0;transform:translateY(50px);transition:opacity 0.8s ease, transform 0.8s ease}         .scroll-reveal.visible{opacity:1;transform:translateY(0)}          /* === SECTION 1: HERO BANNER === */         .page-banner{padding:180px 0;background:linear-gradient(rgba(17,17,17,0.75),rgba(17,17,17,0.88)),url('images/about_factory.webp') center/cover no-repeat;position:relative;text-align:center;color:#fff;border:none;overflow:hidden}         .page-banner::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center, rgba(255,94,20,0.1) 0%, transparent 70%);pointer-events:none;z-index:0}         .page-banner .container{position:relative;z-index:2}         .page-banner h1{font-family:var(--font-heading);font-size:clamp(44px,6vw,72px);text-transform:uppercase;margin:0 0 18px;text-shadow:0 10px 30px rgba(0,0,0,.3);letter-spacing:-1px;animation:revealUp 1s ease 0.2s both}         .page-banner h1 span{color:var(--primary-color)}         .page-banner-sub{font-size:18px;color:rgba(255,255,255,0.8);max-width:520px;margin:0 auto 25px;line-height:1.7;animation:revealUp 1s ease 0.4s both}         .breadcrumb{font-size:13px;color:#aaa;text-transform:uppercase;letter-spacing:2px;margin-top:10px;animation:revealUp 1s ease 0.6s both}         .breadcrumb a{color:#fff;text-decoration:none;transition:color 0.3s}         .breadcrumb a:hover{color:var(--primary-color)}         .breadcrumb span{color:var(--primary-color);margin-left:8px}         .banner-scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.5);font-size:12px;letter-spacing:2px;text-transform:uppercase;animation:bounceDown 2s ease 1s infinite both;z-index:2}         .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--primary-color),transparent)}         @keyframes bounceDown{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}          /* === SECTION 2: CONTACT INFO CARDS === */         .info-cards-section{padding:90px 0;background:#f7f7f5}         .section-header-center{text-align:center;margin-bottom:55px}         .info-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}         @media(max-width:1024px){.info-cards-grid{grid-template-columns:1fr 1fr}}         @media(max-width:600px){.info-cards-grid{grid-template-columns:1fr}}         .info-card{background:#fff;border-radius:16px;padding:50px 35px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,0.06);transition:transform 0.4s cubic-bezier(0.2,0.8,0.2,1),box-shadow 0.4s;position:relative;overflow:hidden;border:1px solid #f0f0f0}         .info-card::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color));transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease}         .info-card:hover{transform:translateY(-12px);box-shadow:0 25px 50px rgba(0,0,0,0.1)}         .info-card:hover::before{transform:scaleX(1)}         .info-card-icon{width:80px;height:80px;background:rgba(255,94,20,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 25px;font-size:28px;color:var(--primary-color);transition:all 0.4s;border:2px solid rgba(255,94,20,0.15)}         .info-card:hover .info-card-icon{background:var(--primary-color);color:#fff;transform:scale(1.1) rotate(-5deg);border-color:var(--primary-color);box-shadow:0 10px 25px rgba(255,94,20,0.3)}         .info-card h3{font-family:var(--font-heading);font-size:22px;margin:0 0 15px;color:var(--secondary-color);transition:color 0.3s}         .info-card:hover h3{color:var(--primary-color)}         .info-card p,.info-card a{font-size:15px;color:#666;line-height:1.8;text-decoration:none;display:block;margin:0;transition:color 0.3s}         .info-card a:hover{color:var(--primary-color)}          /* === SECTION 3: GET IN TOUCH FORM === */         .contact-main-section{padding:100px 0;background:#fff}         .contact-main-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}         @media(max-width:1024px){.contact-main-grid{grid-template-columns:1fr;gap:60px}}         .contact-detail-list{list-style:none;padding:0;margin:0 0 40px;display:flex;flex-direction:column;gap:22px}         .contact-detail-list li{display:flex;align-items:flex-start;gap:18px}         .cdi-icon{width:52px;height:52px;min-width:52px;background:rgba(255,94,20,0.08);color:var(--primary-color);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all 0.3s}         .contact-detail-list li:hover .cdi-icon{background:var(--primary-color);color:#fff;transform:rotate(-5deg) scale(1.05)}         .cdi-text strong{display:block;font-family:var(--font-heading);font-size:16px;color:var(--secondary-color);margin-bottom:4px}         .cdi-text span,.cdi-text a{font-size:14px;color:#777;text-decoration:none;transition:color 0.3s}         .cdi-text a:hover{color:var(--primary-color)}         .contact-socials{display:flex;gap:12px;margin-top:35px;flex-wrap:wrap}         .csocial-btn{width:46px;height:46px;border-radius:10px;background:#f5f5f5;color:#555;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;transition:all 0.3s;border:1px solid #eee}         .csocial-btn:hover{background:var(--primary-color);color:#fff;transform:translateY(-5px);box-shadow:0 10px 20px rgba(255,94,20,0.25);border-color:var(--primary-color)}          /* Form */         .contact-form-wrap{background:#fff;border-radius:20px;padding:55px;box-shadow:0 20px 60px rgba(0,0,0,0.08);border:1px solid #f0f0f0}         .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}         @media(max-width:600px){.form-row{grid-template-columns:1fr}}         .form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}         .form-group label{font-size:12px;font-weight:700;color:#333;text-transform:uppercase;letter-spacing:1.5px}         .form-group input,.form-group textarea,.form-group select{width:100%;padding:16px 20px;border:2px solid #eaeaea;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#333;background:#fcfcfc;outline:none;transition:all 0.3s;box-sizing:border-box;-webkit-appearance:none}         .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary-color);background:#fff;box-shadow:0 0 0 4px rgba(255,94,20,0.08)}         .form-group textarea{resize:vertical;min-height:140px}         .btn-contact-submit{width:100%;padding:18px;background:var(--primary-color);color:#fff;border:none;border-radius:10px;font-family:var(--font-heading);font-size:16px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:12px;text-transform:uppercase}         .btn-contact-submit:hover{background:var(--secondary-color);transform:translateY(-3px);box-shadow:0 15px 35px rgba(255,94,20,0.3)}         .btn-contact-submit i{transition:transform 0.3s}         .btn-contact-submit:hover i{transform:translateX(6px)}         .form-success{display:none;text-align:center;padding:40px 30px;background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.03));border:2px solid rgba(34,197,94,0.25);border-radius:14px;margin-top:20px}         .form-success i{font-size:50px;color:#22c55e;margin-bottom:15px;display:block}         .form-success h4{font-family:var(--font-heading);color:var(--secondary-color);font-size:22px;margin:0 0 10px}         .form-success p{color:#666;font-size:15px;margin:0}          /* === SECTION 4: GLOBAL LOCATIONS === */         .locations-section{padding:100px 0;background:var(--secondary-color);position:relative;overflow:hidden}         .locations-section::before{content:'';position:absolute;top:-150px;right:-150px;width:500px;height:500px;border-radius:50%;background:rgba(255,94,20,0.05);pointer-events:none}         .locations-header{text-align:center;margin-bottom:60px}         .locations-header .section-tag{color:rgba(255,255,255,0.7)}         .locations-header .section-tag::before{background:var(--primary-color)}         .locations-header .section-title{color:#fff}         .locations-header .section-title span{color:var(--primary-color)}         .locations-header .section-desc{color:rgba(255,255,255,0.6);margin:0 auto}         .locations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}         @media(max-width:1024px){.locations-grid{grid-template-columns:1fr 1fr}}         @media(max-width:600px){.locations-grid{grid-template-columns:1fr}}         .location-card{position:relative;border-radius:16px;overflow:hidden;height:290px;cursor:pointer;box-shadow:0 15px 40px rgba(0,0,0,0.3)}         .location-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease;display:block}         .location-card:hover img{transform:scale(1.12)}         .location-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,0.95) 0%,rgba(17,17,17,0.1) 65%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px 25px;transition:background 0.5s}         .location-card:hover .location-overlay{background:linear-gradient(to top,rgba(255,94,20,0.92) 0%,rgba(17,17,17,0.5) 65%,rgba(17,17,17,0.1) 100%)}         .location-badge{display:inline-flex;align-items:center;gap:6px;background:var(--primary-color);color:#fff;font-size:10px;font-family:var(--font-heading);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px;align-self:flex-start;margin-bottom:12px;transition:all 0.3s}         .location-card:hover .location-badge{background:#fff;color:var(--primary-color)}         .location-name{font-family:var(--font-heading);font-size:22px;color:#fff;margin:0 0 8px;transition:transform 0.3s;line-height:1.2}         .location-card:hover .location-name{transform:translateY(-4px)}         .location-desc{font-size:13px;color:rgba(255,255,255,0.85);margin:0;opacity:0;transform:translateY(12px);transition:all 0.4s ease;line-height:1.5}         .location-card:hover .location-desc{opacity:1;transform:translateY(0)}         .map-strip{margin-top:30px;border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.4)}         .map-strip iframe{width:100%;height:380px;border:none;display:block;filter:grayscale(15%) contrast(1.05)}     </style>
+</head>
+<body>
+<!-- Top Bar -->
+<div class="top-bar">
+<div class="container top-bar-inner">
+<div class="top-bar-left">
+<p>
+<i class="fas fa-map-marker-alt">
+</i> MMR Complex, Salem - 636 003, Tamil Nadu, India</p>
+<p>
+<i class="fas fa-clock">
+</i> Mon - Sat: 8:00 am - 6:00 pm</p>
+</div>
+<div class="top-bar-right">
+<a href="404.html">
+<i class="fab fa-facebook-f">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-twitter">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html">
+<i class="fab fa-youtube">
+</i>
+</a>
+</div>
+</div>
+</div>
+<header class="header" id="header">
+<div class="container header-inner">
+<div class="logo" style="display:flex;align-items:center;">
+<a href="index.html"><img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 40px; display: block;"></a>
+</div>
+<nav class="nav-menu">
+<ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="about.html">About Us</a>
+</li>
+<li>
+<a href="projects.html">Projects</a>
+</li>
+<li>
+<a href="blog.html">Blog</a>
+</li>
+<li>
+<a href="contact.html" class="active">Contact</a>
+</li>
+
+<li class="mobile-login-item">
+<a href="login.html" class="btn btn-primary" style="padding: 10px 30px; font-size: 16px;">Login</a>
+</li>
+</ul>
+</nav>
+<div class="header-right">
+<div class="contact-info">
+<i class="fas fa-phone-alt">
+</i>
+<div>
+<span>Call Us Anytime</span>
+<strong>+91 74880 99999</strong>
+</div>
+</div>
+<a href="login.html" class="btn btn-primary">Login</a>
+<button class="mobile-menu-btn">
+<i class="fas fa-bars">
+</i>
+</button>
+</div>
+</div>
+</header>
+<!-- ===== SECTION 1: HERO BANNER ===== -->
+<div class="page-banner">
+<div class="container">
+<h1>Contact <span>Us</span>
+</h1>
+<p class="page-banner-sub">Let's build something extraordinary together. Our industrial experts will respond within 24 hours.</p>
+<div class="breadcrumb">
+<a href="index.html">Home</a> / <span>Contact</span>
+</div>
+</div>
+<div class="banner-scroll-hint">
+<span>Scroll</span>
+<div class="scroll-line">
+</div>
+</div>
+</div>
+<!-- ===== SECTION 2: CONTACT INFO CARDS ===== -->
+<section class="info-cards-section">
+<div class="container">
+<div class="section-header-center scroll-reveal">
+<div class="section-tag">Find Us</div>
+<h2 class="section-title">Our Contact <span>Details</span>
+</h2>
+</div>
+<div class="info-cards-grid">
+<div class="info-card scroll-reveal">
+<div class="info-card-icon">
+<i class="fas fa-map-marker-alt">
+</i>
+</div>
+<h3>Headquarters</h3>
+<p>MMR Complex, Salem - 636 003</p>
+<p>Tamil Nadu, India</p>
+</div>
+<div class="info-card scroll-reveal">
+<div class="info-card-icon">
+<i class="fas fa-phone-alt">
+</i>
+</div>
+<h3>Phone &amp; Email</h3>
+<a href="404.html">+91 74880 99999</a>
+<a href="404.html">info@stackly.com</a>
+</div>
+<div class="info-card scroll-reveal">
+<div class="info-card-icon">
+<i class="fas fa-clock">
+</i>
+</div>
+<h3>Working Hours</h3>
+<p>Monday &ndash; Friday: 8:00am &ndash; 6:00pm</p>
+<p>Saturday: 9:00am &ndash; 2:00pm</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== SECTION 3: GET IN TOUCH FORM ===== -->
+<section class="contact-main-section">
+<div class="container">
+<div class="contact-main-grid">
+<!-- Left Info -->
+<div class="scroll-reveal">
+<div class="section-tag">Write To Us</div>
+<h2 class="section-title">Ready To Start Your <span>Next Project?</span>
+</h2>
+<p class="section-desc">Whether you have a question about our manufacturing capabilities, want to request a quote, or need technical support â€” our team is ready to help.</p>
+<ul class="contact-detail-list">
+<li>
+<div class="cdi-icon">
+<i class="fas fa-industry">
+</i>
+</div>
+<div class="cdi-text">
+<strong>Manufacturing Inquiries</strong>
+<a href="404.html">info@stackly.com</a>
+</div>
+</li>
+<li>
+<div class="cdi-icon">
+<i class="fas fa-headset">
+</i>
+</div>
+<div class="cdi-text">
+<strong>Technical Support</strong>
+<a href="404.html">+91 74880 99999</a>
+</div>
+</li>
+<li>
+<div class="cdi-icon">
+<i class="fas fa-file-contract">
+</i>
+</div>
+<div class="cdi-text">
+<strong>Partnerships &amp; Contracts</strong>
+<a href="404.html">info@stackly.com</a>
+</div>
+</li>
+<li>
+<div class="cdi-icon">
+<i class="fas fa-map-marker-alt">
+</i>
+</div>
+<div class="cdi-text">
+<strong>Visit Our Plant</strong>
+<span>123 Industrial Ave, NY 10001</span>
+</div>
+</li>
+</ul>
+<div class="contact-socials">
+<a href="404.html" class="csocial-btn" title="Facebook">
+<i class="fab fa-facebook-f">
+</i>
+</a>
+<a href="404.html" class="csocial-btn" title="Twitter">
+<i class="fab fa-twitter">
+</i>
+</a>
+<a href="404.html" class="csocial-btn" title="LinkedIn">
+<i class="fab fa-linkedin-in">
+</i>
+</a>
+<a href="404.html" class="csocial-btn" title="YouTube">
+<i class="fab fa-youtube">
+</i>
+</a>
+<a href="404.html" class="csocial-btn" title="Instagram">
+<i class="fab fa-instagram">
+</i>
+</a>
+</div>
+</div>
+<!-- Right Form -->
+<div class="contact-form-wrap scroll-reveal">
+<div class="section-tag" style="margin-bottom:20px">Send a Message</div>
+<h3 style="font-family:var(--font-heading);font-size:28px;color:var(--secondary-color);margin:0 0 35px">We respond within <span style="color:var(--primary-color)">24 hours</span>
+</h3>
+<form id="contactForm" action="404.html" method="GET">
+<div class="form-row">
+<div class="form-group">
+<label for="fname">First Name</label>
+<input type="text" id="fname" placeholder="John" required>
+</div>
+<div class="form-group">
+<label for="lname">Last Name</label>
+<input type="text" id="lname" placeholder="Doe" required>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="cemail">Email Address</label>
+<input type="email" id="cemail" placeholder="john@company.com" required>
+</div>
+<div class="form-group">
+<label for="cphone">Phone Number</label>
+<input type="tel" id="cphone" placeholder="+1 (000) 000 0000">
+</div>
+</div>
+<div class="form-group">
+<label for="cservice">Service Interested In</label>
+<select id="cservice">
+<option value="" disabled selected>Select a service...</option>
+<option>Industrial Automation</option>
+<option>Chemical Processing</option>
+<option>Heavy Manufacturing</option>
+<option>Safety Consulting</option>
+<option>Plant Engineering</option>
+<option>Other</option>
+</select>
+</div>
+<div class="form-group">
+<label for="cmessage">Your Message</label>
+<textarea id="cmessage" placeholder="Tell us about your project requirements..." required>
+</textarea>
+</div>
+<button type="submit" class="btn-contact-submit" id="submitBtn">
+<span>Send Message</span>
+<i class="fas fa-paper-plane">
+</i>
+</button>
+</form>
+<div class="form-success" id="formSuccess">
+<i class="fas fa-check-circle">
+</i>
+<h4>Message Sent Successfully!</h4>
+<p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== SECTION 4: GLOBAL LOCATIONS ===== -->
+<section class="locations-section">
+<div class="container">
+<div class="locations-header scroll-reveal">
+<div class="section-tag">Worldwide</div>
+<h2 class="section-title">Our Global <span>Facilities</span>
+</h2>
+<p class="section-desc">Stackly operates world-class manufacturing plants across key industrial hubs around the globe, delivering precision engineering at scale.</p>
+</div>
+<div class="locations-grid">
+<a href="404.html" class="location-card scroll-reveal" style="display: block; text-decoration: none; color: inherit;">
+<img src="images/about_factory.webp" alt="Detroit Plant">
+<div class="location-overlay">
+<span class="location-badge">Active</span>
+<h3 class="location-name">Detroit Plant</h3>
+<p class="location-desc">Heavy machinery &amp; automotive components manufacturing hub.</p>
+</div>
+</a>
+<a href="404.html" class="location-card scroll-reveal" style="display: block; text-decoration: none; color: inherit;">
+<img src="images/about_plant.webp" alt="Berlin Facility">
+<div class="location-overlay">
+<span class="location-badge">Active</span>
+<h3 class="location-name">Berlin Facility</h3>
+<p class="location-desc">Precision engineering &amp; automated assembly systems center.</p>
+</div>
+</a>
+<a href="404.html" class="location-card scroll-reveal" style="display: block; text-decoration: none; color: inherit;">
+<img src="images/solution-robotics.webp" alt="Tokyo Lab">
+<div class="location-overlay">
+<span class="location-badge">Active</span>
+<h3 class="location-name">Tokyo R&amp;D Lab</h3>
+<p class="location-desc">Robotics research, AI integration &amp; industrial innovation.</p>
+</div>
+</a>
+<a href="404.html" class="location-card scroll-reveal" style="display: block; text-decoration: none; color: inherit;">
+<img src="images/solution-power.webp" alt="Dubai Energy Hub">
+<div class="location-overlay">
+<span class="location-badge">Active</span>
+<h3 class="location-name">Dubai Energy Hub</h3>
+<p class="location-desc">Power generation &amp; industrial energy solutions for MENA.</p>
+</div>
+</a>
+</div>
+<!-- Embedded Map -->
+<div class="map-strip scroll-reveal">
+<iframe                     src="https://maps.google.com/maps?q=Salem,%20Tamil%20Nadu,%20India&t=&z=13&ie=UTF8&iwloc=&output=embed"                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Stackly HQ Location">
+</iframe>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-inner">
+<div class="footer-cta">
+<div class="footer-logo">
+<a href="index.html"><img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 40px; display: block;"></a>
+</div>
+<h2 class="footer-headline">Let's engineer your next<br>
+<em>production line.</em>
+</h2>
+<a href="404.html" class="footer-cta-btn">                         Start a Project                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="7" y1="17" x2="17" y2="7"/>
+<polyline points="7 7 17 7 17 17"/>
+</svg>
+</a>
+</div>
+<div class="footer-col">
+<h4>Company</h4>
+<ul>
+<li>
+<a href="404.html">Get a Quote</a>
+</li>
+<li>
+<a href="404.html">FAQ</a>
+</li>
+<li>
+<a href="404.html">Terms of Service</a>
+</li>
+<li>
+<a href="404.html">Privacy Policy</a>
+</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<ul>
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="about.html">About Us</a>
+</li>
+<li>
+<a href="projects.html">Projects</a>
+</li>
+<li>
+<a href="blog.html">Blog</a>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Get In Touch</h4>
+<ul>
+<li>
+<a href="#">123 Industrial Ave, NY 10001</a>
+</li>
+<li>
+<a href="404.html">+91 74880 99999</a>
+</li>
+<li>
+<a href="404.html">info@stackly.com</a>
+</li>
+<li>
+<a href="404.html">Mon &ndash; Sat: 8:00am &ndash; 6:00pm</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="container">
+<p>&copy; 2026 Stackly Industrial. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script src="script.js">
+</script>
+<script>
+    const revealEls = document.querySelectorAll('.scroll-reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    const cards = document.querySelectorAll('.info-card, .location-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 120);
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    cards.forEach(c => { c.classList.add('scroll-reveal'); cardObserver.observe(c); });
+
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+        if(header) header.classList.toggle("sticky", window.scrollY > 80);
+    });
+
+    const form = document.getElementById("contactForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const formSuccess = document.getElementById("formSuccess");
+    if (form) {
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                window.location.href = "404.html";
+            }, 800);
+        });
+    }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>User Dashboard | STACKLY Industrial</title>
+<meta name="description" content="STACKLY Industrial User Dashboard – track your projects, orders, documents and more."/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<style>     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }     :root {       --primary:#FF5E14; --primary-dark:#d94e0e; --primary-glow:rgba(255,94,20,.18);       --bg:#0d0d0d; --bg2:#141414; --bg3:#1c1c1c;       --card:#161616; --border:rgba(255,255,255,.07);       --text:#f0f0f0; --text-muted:#888; --text-dim:#4a4a4a;       --success:#22c55e; --warning:#f59e0b; --info:#3b82f6; --danger:#ef4444;       --sidebar-w:262px; --header-h:66px;       --radius:14px; --radius-sm:9px;       --tr:all .28s cubic-bezier(.25,.8,.25,1);     }     ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--primary);border-radius:10px}     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;overflow-x:hidden}      /* ═══ SIDEBAR ═══ */     .sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100}     .sidebar-logo{padding:20px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);text-decoration:none}     .logo-box{width:37px;height:37px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:800;font-size:13px;color:#fff;box-shadow:0 0 16px var(--primary-glow);flex-shrink:0}     .logo-text{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;color:var(--text);letter-spacing:1px}     .logo-text span{color:var(--primary)}     .sidebar-user{padding:16px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border)}     .u-avatar{width:42px;height:42px;background:linear-gradient(135deg,var(--primary),#ff8c52);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 0 14px var(--primary-glow)}     .u-name{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}     .u-badge{font-size:10px;color:var(--primary);background:var(--primary-glow);border:1px solid rgba(255,94,20,.3);border-radius:20px;padding:2px 8px;display:inline-flex;align-items:center;gap:4px;margin-top:3px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}     .sidebar-nav{flex:1;padding:14px 10px;overflow-y:auto}     .nav-label{font-size:9.5px;text-transform:uppercase;letter-spacing:1.8px;color:var(--text-dim);padding:8px 12px 5px;font-weight:700}     .nav-item{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:var(--radius-sm);cursor:pointer;color:var(--text-muted);font-size:13.5px;font-weight:500;transition:var(--tr);margin-bottom:2px;text-decoration:none;position:relative;border:none;background:none;width:100%;text-align:left}     .nav-item:hover{background:rgba(255,94,20,.08);color:var(--primary)}     .nav-item.active{background:var(--primary-glow);color:var(--primary);font-weight:600}     .nav-item.active::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:3px;background:var(--primary);border-radius:0 3px 3px 0}     .nav-item i{width:18px;text-align:center;font-size:14px}     .nav-badge{margin-left:auto;background:var(--primary);color:#fff;font-size:10px;font-weight:700;border-radius:20px;padding:2px 7px}     .sidebar-footer{padding:14px 10px;border-top:1px solid var(--border)}     .logout-btn{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:var(--radius-sm);color:var(--danger);font-size:13.5px;font-weight:500;cursor:pointer;transition:var(--tr);background:none;border:none;width:100%;text-align:left}     .logout-btn:hover{background:rgba(239,68,68,.1)}      /* ═══ MAIN ═══ */     .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}     .topbar{height:var(--header-h);background:rgba(13,13,13,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 26px;position:sticky;top:0;z-index:50;gap:14px}     .topbar-title{font-family:'Oswald',sans-serif;font-size:19px;font-weight:700;color:var(--text);flex:1}     .topbar-title span{color:var(--primary)}     .topbar-search{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 13px;transition:var(--tr)}     .topbar-search:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}     .topbar-search input{background:none;border:none;outline:none;color:var(--text);font-size:13px;width:170px}     .topbar-search input::placeholder{color:var(--text-dim)}     .topbar-search i{color:var(--text-dim);font-size:13px}     .topbar-actions{display:flex;align-items:center;gap:9px}     .icon-btn{width:37px;height:37px;border-radius:9px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);cursor:pointer;transition:var(--tr);position:relative;font-size:14px}     .icon-btn:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-glow)}     .notif-dot{position:absolute;top:8px;right:8px;width:7px;height:7px;background:var(--primary);border-radius:50%;border:2px solid var(--bg2)}      /* ═══ CONTENT SECTIONS ═══ */     .content{padding:26px;flex:1}     .page-section{display:none;animation:fadeUp .45s ease both}     .page-section.active{display:block}     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}     @keyframes pulse-ring{0%{box-shadow:0 0 0 0 var(--primary-glow)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}     @keyframes waveHand{0%{transform:rotate(0deg)}15%{transform:rotate(20deg)}30%{transform:rotate(-10deg)}45%{transform:rotate(18deg)}60%{transform:rotate(-8deg)}75%{transform:rotate(14deg)}100%{transform:rotate(0deg)}}      /* ─ SECTION HEADER ─ */     .section-head{margin-bottom:22px}     .section-head h2{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px}     .section-head h2 span{color:var(--primary)}     .section-head p{font-size:13px;color:var(--text-muted)}      /* ─ CARDS ─ */     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px}     .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}     .card-title{font-size:14px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}     .card-title i{color:var(--primary)}     .card-action{font-size:12px;color:var(--primary);cursor:pointer;text-decoration:none;font-weight:600}     .card-action:hover{text-decoration:underline}      /* ─ GREETING ─ */     .greeting-banner{background:linear-gradient(135deg,#1a1a1a,#201408);border:1px solid rgba(255,94,20,.2);border-radius:var(--radius);padding:26px 30px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;position:relative;overflow:hidden}     .greeting-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,94,20,.14) 0%,transparent 70%);pointer-events:none}     .greeting-text h2{font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;color:var(--text);margin-bottom:5px}     .greeting-text h2 span{color:var(--primary)}     .greeting-text p{color:var(--text-muted);font-size:13px}     .g-badge{display:flex;align-items:center;gap:8px;background:var(--primary-glow);border:1px solid rgba(255,94,20,.3);border-radius:8px;padding:10px 16px}     .g-badge i{color:var(--primary);font-size:18px}     .g-badge-text{font-size:11px;color:var(--text-muted)}     .g-badge-text strong{display:block;font-size:14px;color:var(--primary);font-weight:700}      /* ─ STATS ─ */     .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}     .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:var(--tr);cursor:default}     .stat-card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,94,20,.1)}     .stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),transparent);opacity:0;transition:var(--tr)}     .stat-card:hover::after{opacity:1}     .stat-header{display:flex;align-items:center;justify-content:space-between}     .stat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}     .ic-orange{background:rgba(255,94,20,.15);color:var(--primary)} .ic-green{background:rgba(34,197,94,.15);color:var(--success)} .ic-blue{background:rgba(59,130,246,.15);color:var(--info)} .ic-amber{background:rgba(245,158,11,.15);color:var(--warning)}     .stat-trend{font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px}     .trend-up{color:var(--success);background:rgba(34,197,94,.12)} .trend-down{color:var(--danger);background:rgba(239,68,68,.12)}     .stat-val{font-size:28px;font-weight:700;color:var(--text);line-height:1}     .stat-lbl{font-size:12px;color:var(--text-muted)}      /* ─ GRID ─ */     .two-col{display:grid;grid-template-columns:1fr 330px;gap:18px;margin-bottom:20px}     .one-col{display:flex;flex-direction:column;gap:18px}      /* ─ PROGRESS ─ */     .proj-item{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--border);transition:var(--tr)}     .proj-item:first-child{padding-top:0} .proj-item:last-child{border-bottom:none;padding-bottom:0}     .proj-item:hover{padding-left:4px}     .proj-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}     .p-orange{background:rgba(255,94,20,.15);color:var(--primary)} .p-blue{background:rgba(59,130,246,.15);color:var(--info)} .p-green{background:rgba(34,197,94,.15);color:var(--success)} .p-amber{background:rgba(245,158,11,.15);color:var(--warning)} .p-purple{background:rgba(139,92,246,.15);color:#8b5cf6}     .proj-info{flex:1;min-width:0}     .proj-name{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}     .proj-meta{font-size:11px;color:var(--text-muted);margin-top:2px}     .prog-wrap{width:88px}     .prog-bar{height:4px;background:var(--bg3);border-radius:10px;overflow:hidden;margin-bottom:4px}     .prog-fill{height:100%;background:var(--primary);border-radius:10px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}     .prog-fill.g{background:var(--success)} .prog-fill.b{background:var(--info)} .prog-fill.a{background:var(--warning)} .prog-fill.p{background:#8b5cf6}     .prog-pct{font-size:10px;color:var(--text-muted);text-align:right}      /* ─ TABLE ─ */     .table-wrap{overflow-x:auto}     table{width:100%;border-collapse:collapse;font-size:13px}     thead tr{border-bottom:1px solid var(--border)}     th{padding:10px 13px;text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:700}     td{padding:13px 13px;color:var(--text-muted);border-bottom:1px solid rgba(255,255,255,.03);transition:var(--tr)}     tbody tr{transition:var(--tr)} tbody tr:hover td{background:rgba(255,94,20,.04);color:var(--text)} tbody tr:last-child td{border-bottom:none}     .td-bold{font-weight:600;color:var(--text)}     .pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}     .pill i{font-size:7px}     .ps{background:rgba(34,197,94,.12);color:var(--success)} .pw{background:rgba(245,158,11,.12);color:var(--warning)} .pi{background:rgba(59,130,246,.12);color:var(--info)} .pd{background:rgba(239,68,68,.12);color:var(--danger)}      /* ─ PROFILE RING ─ */     .profile-ring{width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#ff8c52);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#fff;box-shadow:0 0 0 4px var(--bg3),0 0 0 6px rgba(255,94,20,.4);margin:0 auto 12px;animation:pulse-ring 2.2s infinite}      /* ─ CHART ─ */     .chart-bars{display:flex;align-items:flex-end;gap:6px;height:80px;padding-top:8px}     .chart-bar{flex:1;border-radius:4px 4px 0 0;background:var(--bg3);position:relative;cursor:pointer;transition:var(--tr)}     .chart-bar .cfill{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,var(--primary),#ff8c52);border-radius:4px 4px 0 0;transition:height 1s cubic-bezier(.4,0,.2,1)}     .chart-bar:hover .cfill{filter:brightness(1.15)}     .chart-labels{display:flex;gap:6px;margin-top:5px}     .chart-label{flex:1;text-align:center;font-size:9px;color:var(--text-dim)}      /* ─ NOTIF ─ */     .notif-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}     .notif-item:last-child{border-bottom:none}     .notif-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}     .notif-body .notif-text{font-size:12.5px;color:var(--text);line-height:1.5}     .notif-body .notif-text b{color:var(--primary)}     .notif-time{font-size:11px;color:var(--text-dim);margin-top:2px}     .notif-unread{width:8px;height:8px;background:var(--primary);border-radius:50%;flex-shrink:0;margin-top:5px}      /* ─ DOCUMENTS ─ */     .doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}     .doc-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:var(--tr);text-align:center}     .doc-card:hover{border-color:var(--primary);background:var(--primary-glow);transform:translateY(-3px)}     .doc-icon{font-size:28px}     .doc-name{font-size:12px;font-weight:600;color:var(--text)}     .doc-size{font-size:10px;color:var(--text-muted)}     .doc-date{font-size:10px;color:var(--text-dim)}      /* ─ MESSAGES ─ */     .msg-layout{display:grid;grid-template-columns:240px 1fr;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;height:460px}     .msg-list{border-right:1px solid var(--border);overflow-y:auto}     .msg-list-item{padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:var(--tr);display:flex;align-items:center;gap:11px}     .msg-list-item:hover{background:rgba(255,94,20,.06)}     .msg-list-item.active{background:var(--primary-glow)}     .msg-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}     .msg-info{flex:1;min-width:0}     .msg-from{font-size:12.5px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}     .msg-preview{font-size:11px;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}     .msg-time{font-size:10px;color:var(--text-dim)}     .msg-dot{width:7px;height:7px;background:var(--primary);border-radius:50%;flex-shrink:0}     .msg-panel{display:flex;flex-direction:column}     .msg-panel-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}     .msg-panel-body{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px}     .msg-bubble{max-width:70%;padding:10px 14px;border-radius:12px;font-size:12.5px;line-height:1.5}     .msg-bubble.recv{background:var(--bg3);color:var(--text);border-radius:4px 12px 12px 12px;align-self:flex-start}     .msg-bubble.sent{background:var(--primary);color:#fff;border-radius:12px 4px 12px 12px;align-self:flex-end}     .msg-bubble-time{font-size:10px;color:var(--text-dim);margin-top:4px}     .msg-input-row{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center}     .msg-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:var(--tr)}     .msg-input:focus{border-color:var(--primary)}     .msg-send-btn{background:var(--primary);border:none;color:#fff;width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:14px;transition:var(--tr);flex-shrink:0}     .msg-send-btn:hover{background:var(--primary-dark)}      /* ─ SETTINGS ─ */     .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}     .settings-section{margin-bottom:22px}     .settings-section h3{font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}     .settings-section h3 i{color:var(--primary)}     .form-row{margin-bottom:14px}     .form-row label{display:block;font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}     .form-ctrl{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:var(--tr)}     .form-ctrl:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}     .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}     .toggle-row:last-child{border-bottom:none}     .toggle-label{font-size:13px;color:var(--text)}     .toggle-sub{font-size:11px;color:var(--text-muted);margin-top:2px}     .toggle{width:42px;height:22px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;cursor:pointer;position:relative;transition:var(--tr);flex-shrink:0}     .toggle.on{background:var(--primary);border-color:var(--primary)}     .toggle::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;background:#fff;border-radius:50%;transition:var(--tr)}     .toggle.on::after{left:23px}     .save-btn{background:var(--primary);color:#fff;border:none;padding:11px 26px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:var(--tr);font-family:'Inter',sans-serif}     .save-btn:hover{background:var(--primary-dark);transform:translateY(-1px)}      /* ─ HELP ─ */     .faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;overflow:hidden}     .faq-q{padding:14px 16px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:var(--tr)}     .faq-q:hover{background:rgba(255,94,20,.06);color:var(--primary)}     .faq-q i{font-size:12px;transition:transform .3s}     .faq-a{display:none;padding:0 16px 14px;font-size:13px;color:var(--text-muted);line-height:1.7}     .faq-item.open .faq-a{display:block}     .faq-item.open .faq-q{background:rgba(255,94,20,.06);color:var(--primary)}     .faq-item.open .faq-q i{transform:rotate(90deg)}     .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}     .contact-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;text-align:center;cursor:pointer;transition:var(--tr)}     .contact-card:hover{border-color:var(--primary);transform:translateY(-3px)}     .contact-card i{font-size:24px;color:var(--primary);margin-bottom:10px;display:block}     .contact-card h4{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}     .contact-card p{font-size:11px;color:var(--text-muted)}      /* ─ QUICK ACTIONS ─ */     .qa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}     .qa-btn{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:var(--tr);color:var(--text);font-size:13px;font-weight:500;text-decoration:none}     .qa-btn:hover{border-color:var(--primary);background:var(--primary-glow);color:var(--primary);transform:translateY(-2px)}     .qa-btn i{font-size:17px;color:var(--primary);width:19px;text-align:center}      /* ─ RESPONSIVE ─ */     @media(max-width:1100px){.two-col{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}     @media(max-width:900px){.doc-grid{grid-template-columns:repeat(2,1fr)}.settings-grid{grid-template-columns:1fr}.qa-grid{grid-template-columns:repeat(2,1fr)}}     @media(max-width:700px){.msg-layout{grid-template-columns:1fr;height:auto}.msg-list{height:200px}.contact-grid{grid-template-columns:1fr}}   </style>
+</head>
+<body>
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar">
+<a class="sidebar-logo" href="index.html">
+<img src="images/stackly-logo.webp" alt="Stackly Logo" style="height: 35px; display: block; margin: auto;">
+</a>
+<div class="sidebar-user">
+<div class="u-avatar" id="sidebarAvatar">JD</div>
+<div style="min-width:0">
+<div class="u-name" id="sidebarName">John Doe</div>
+<div class="u-badge">
+<i class="fas fa-circle" style="font-size:6px">
+</i> User</div>
+</div>
+</div>
+<nav class="sidebar-nav">
+<div class="nav-label">Main</div>
+<button class="nav-item active" data-page="overview">
+<i class="fas fa-gauge-high">
+</i> Overview     </button>
+<button class="nav-item" data-page="projects">
+<i class="fas fa-diagram-project">
+</i> My Projects       <span class="nav-badge">4</span>
+</button>
+<button class="nav-item" data-page="orders">
+<i class="fas fa-box-open">
+</i> Orders       <span class="nav-badge">2</span>
+</button>
+<button class="nav-item" data-page="documents">
+<i class="fas fa-file-lines">
+</i> Documents     </button>
+<div class="nav-label" style="margin-top:10px">Support</div>
+<button class="nav-item" data-page="messages">
+<i class="fas fa-comment-dots">
+</i> Messages       <span class="nav-badge">3</span>
+</button>
+<button class="nav-item" data-page="notifications">
+<i class="fas fa-bell">
+</i> Notifications     </button>
+
+
+</nav>
+<div class="sidebar-footer">
+<button class="logout-btn" onclick="logout()">
+<i class="fas fa-right-from-bracket">
+</i> Sign Out     </button>
+</div>
+</aside>
+<!-- ═══════════ MAIN ═══════════ -->
+<div class="main">
+<!-- TOPBAR -->
+<header class="topbar">
+<div class="topbar-title" id="topbarTitle">User <span>Dashboard</span>
+</div>
+<div class="topbar-search">
+<i class="fas fa-search">
+</i>
+<input type="text" placeholder="Search projects, orders…" id="searchInput"/>
+</div>
+<div class="topbar-actions">
+<div class="icon-btn" onclick="navTo('notifications')" title="Notifications">
+<i class="fas fa-bell">
+</i>
+<span class="notif-dot">
+</span>
+</div>
+<div class="icon-btn" onclick="navTo('messages')" title="Messages">
+<i class="fas fa-comment-dots">
+</i>
+</div>
+<div class="icon-btn" id="topAvatar" onclick="navTo('settings')" title="Profile" style="background:linear-gradient(135deg,var(--primary),#ff8c52);color:#fff;font-weight:700;font-size:13px;cursor:pointer">JD</div>
+</div>
+</header>
+<div class="content">
+<!-- ═══ PAGE: OVERVIEW ═══ -->
+<section id="page-overview" class="page-section active">
+<div class="greeting-banner">
+<div class="greeting-text">
+<h2>Welcome back, <span id="greetName">John</span>
+<i class="fas fa-hand-wave" style="color:var(--primary);font-size:22px;vertical-align:middle;animation:waveHand 1.6s ease-in-out infinite;display:inline-block;transform-origin:70% 70%">
+</i>
+</h2>
+<p id="greetMsg">Here's what's happening with your projects today.</p>
+</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div class="g-badge">
+<i class="fas fa-circle-check">
+</i>
+<div class="g-badge-text">
+<strong>3 Active</strong>Projects</div>
+</div>
+<div class="g-badge">
+<i class="fas fa-clock">
+</i>
+<div class="g-badge-text">
+<strong id="currentDate">—</strong>Today</div>
+</div>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-header">
+<div class="stat-icon ic-orange">
+<i class="fas fa-diagram-project">
+</i>
+</div>
+<span class="stat-trend trend-up">
+<i class="fas fa-arrow-up">
+</i> 12%</span>
+</div>
+<div class="stat-val" data-target="12">0</div>
+<div class="stat-lbl">Active Projects</div>
+</div>
+<div class="stat-card">
+<div class="stat-header">
+<div class="stat-icon ic-green">
+<i class="fas fa-box-open">
+</i>
+</div>
+<span class="stat-trend trend-up">
+<i class="fas fa-arrow-up">
+</i> 8%</span>
+</div>
+<div class="stat-val" data-target="47">0</div>
+<div class="stat-lbl">Total Orders</div>
+</div>
+<div class="stat-card">
+<div class="stat-header">
+<div class="stat-icon ic-blue">
+<i class="fas fa-file-lines">
+</i>
+</div>
+<span class="stat-trend trend-up">
+<i class="fas fa-arrow-up">
+</i> 5%</span>
+</div>
+<div class="stat-val" data-target="23">0</div>
+<div class="stat-lbl">Documents</div>
+</div>
+<div class="stat-card">
+<div class="stat-header">
+<div class="stat-icon ic-amber">
+<i class="fas fa-star">
+</i>
+</div>
+<span class="stat-trend trend-down">
+<i class="fas fa-arrow-down">
+</i> 2%</span>
+</div>
+<div class="stat-val" data-target="94">0</div>
+<div class="stat-lbl">Profile Score</div>
+</div>
+</div>
+<div class="two-col">
+<div class="one-col">
+<!-- Overview Projects snippet -->
+<div class="card">
+<div class="card-header">
+<div class="card-title">
+<i class="fas fa-diagram-project">
+</i> My Projects</div>
+<a class="card-action" onclick="navTo('projects')">View All →</a>
+</div>
+<div class="proj-item">
+<div class="proj-icon p-orange">
+<i class="fas fa-industry">
+</i>
+</div>
+<div class="proj-info">
+<div class="proj-name">Steel Plant Modernization</div>
+<div class="proj-meta">Due: Sep 30, 2026 · 6 members</div>
+</div>
+<div class="prog-wrap">
+<div class="prog-bar">
+<div class="prog-fill" style="width:0" data-w="78%">
+</div>
+</div>
+<div class="prog-pct">78%</div>
+</div>
+</div>
+<div class="proj-item">
+<div class="proj-icon p-blue">
+<i class="fas fa-bolt">
+</i>
+</div>
+<div class="proj-info">
+<div class="proj-name">Power Grid Upgrade</div>
+<div class="proj-meta">Due: Oct 15, 2026 · 4 members</div>
+</div>
+<div class="prog-wrap">
+<div class="prog-bar">
+<div class="prog-fill b" style="width:0" data-w="52%">
+</div>
+</div>
+<div class="prog-pct">52%</div>
+</div>
+</div>
+<div class="proj-item">
+<div class="proj-icon p-green">
+<i class="fas fa-leaf">
+</i>
+</div>
+<div class="proj-info">
+<div class="proj-name">Green Energy Initiative</div>
+<div class="proj-meta">Due: Dec 1, 2026 · 8 members</div>
+</div>
+<div class="prog-wrap">
+<div class="prog-bar">
+<div class="prog-fill g" style="width:0" data-w="31%">
+</div>
+</div>
+<div class="prog-pct">31%</div>
+</div>
+</div>
+<div class="proj-item">
+<div class="proj-icon p-amber">
+<i class="fas fa-gears">
+</i>
+</div>
+<div class="proj-info">
+<div class="proj-name">Automation Integration</div>
+<div class="proj-meta">Due: Nov 5, 2026 · 3 members</div>
+</div>
+<div class="prog-wrap">
+<div class="prog-bar">
+<div class="prog-fill a" style="width:0" data-w="91%">
+</div>
+</div>
+<div class="prog-pct">91%</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="card">
+<div class="card-header">
+<div class="card-title">
+<i class="fas fa-bolt">
+</i> Quick Actions</div>
+</div>
+<div class="qa-grid">
+<a class="qa-btn" onclick="navTo('orders')">
+<i class="fas fa-cart-plus">
+</i> New Order</a>
+<a class="qa-btn" onclick="navTo('projects')">
+<i class="fas fa-plus-circle">
+</i> New Project</a>
+<a class="qa-btn" onclick="navTo('documents')">
+<i class="fas fa-file-upload">
+</i> Upload Doc</a>
+
+</div>
+</div>
+</div>
+<div class="one-col">
+<!-- Profile card -->
+<div class="card" style="text-align:center;padding:26px 20px">
+<div class="profile-ring" id="profileRing">JD</div>
+<div style="font-size:16px;font-weight:700;color:var(--text)" id="profileFullName">John Doe</div>
+<div style="font-size:12px;color:var(--text-muted);margin-top:4px" id="profileEmail">john@example.com</div>
+<div style="margin:12px 0;display:flex;justify-content:center;gap:8px;flex-wrap:wrap">
+<span class="u-badge">
+<i class="fas fa-user" style="font-size:8px">
+</i> User</span>
+<span style="background:rgba(34,197,94,.12);color:var(--success);font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;border:1px solid rgba(34,197,94,.2)">
+<i class="fas fa-circle" style="font-size:6px;margin-right:3px">
+</i>Active</span>
+</div>
+<div style="display:flex;justify-content:space-around;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:14px">
+<div style="text-align:center">
+<div style="font-size:17px;font-weight:700;color:var(--text)">12</div>
+<div style="font-size:10px;color:var(--text-muted)">Projects</div>
+</div>
+<div style="text-align:center">
+<div style="font-size:17px;font-weight:700;color:var(--text)">47</div>
+<div style="font-size:10px;color:var(--text-muted)">Orders</div>
+</div>
+<div style="text-align:center">
+<div style="font-size:17px;font-weight:700;color:var(--text)">23</div>
+<div style="font-size:10px;color:var(--text-muted)">Docs</div>
+</div>
+</div>
+<button onclick="navTo('settings')" style="display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:var(--tr)" onmouseover="this.style.background='var(--primary-dark)'" onmouseout="this.style.background='var(--primary)'">
+<i class="fas fa-pen">
+</i> Edit Profile</button>
+</div>
+<!-- Activity Chart -->
+<div class="card">
+<div class="card-header">
+<div class="card-title">
+<i class="fas fa-chart-simple">
+</i> Activity (7 Days)</div>
+</div>
+<div class="chart-bars" id="chartBars">
+<div class="chart-bar">
+<div class="cfill" style="height:0" data-h="60%">
+</div>
+</div>
+<div class="chart-bar">
+<div class="cfill" style="height:0" data-h="80%">
+</div>
+</div>
+<div class="chart-bar">
+<div class="cfill" style="height:0" data-h="45%">
+</div>
+</div>
+<div class="chart-bar">
+<div class="cfill" style="height:0" data-h="90%">
+</div>
+</div>
+<div class="chart-bar">
+<div class="cfill" style="height:0" data-h="55%">
+</div>
+</div>
+<div class="chart-bar">
+<div class="cfill" style="height:0" data-h="70%">
+</div>
+</div>
+<div class="chart-bar">
+<div class="cfill" style="height:0" data-h="85%">
+</div>
+</div>
+</div>
+<div class="chart-labels">
+<div class="chart-label">Mon</div>
+<div class="chart-label">Tue</div>
+<div class="chart-label">Wed</div>
+<div class="chart-label">Thu</div>
+<div class="chart-label">Fri</div>
+<div class="chart-label">Sat</div>
+<div class="chart-label">Sun</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══ PAGE: PROJECTS ═══ -->
+<section id="page-projects" class="page-section">
+<div class="section-head">
+<h2>
+<i class="fas fa-diagram-project" style="color:var(--primary);margin-right:8px">
+</i>My <span>Projects</span>
+</h2>
+<p>Track progress, manage tasks and collaborate with your team.</p>
+</div>
+<div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+<button onclick="filterProj('all')" class="save-btn" id="pf-all" style="padding:9px 18px;font-size:12px">All (4)</button>
+<button onclick="filterProj('active')" style="padding:9px 18px;font-size:12px;background:var(--bg3);color:var(--text-muted);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Inter',sans-serif;transition:var(--tr)" id="pf-active">Active</button>
+<button onclick="filterProj('completed')" style="padding:9px 18px;font-size:12px;background:var(--bg3);color:var(--text-muted);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Inter',sans-serif;transition:var(--tr)" id="pf-completed">Completed</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px" id="projGrid">
+<div class="card proj-card" data-status="active" style="border-left:3px solid var(--primary)">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<div class="proj-icon p-orange" style="width:44px;height:44px;font-size:17px">
+<i class="fas fa-industry">
+</i>
+</div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--text)">Steel Plant Modernization</div>
+<div style="font-size:11px;color:var(--text-muted);margin-top:2px">Due: Sep 30, 2026 · 6 members</div>
+</div>
+<span class="pill ps" style="margin-left:auto">Active</span>
+</div>
+<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.6">Upgrading steel plant furnaces with modern IoT sensors and automation controls to improve efficiency by 35%.</div>
+<div style="margin-bottom:8px">
+<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:5px">
+<span>Progress</span>
+<span>78%</span>
+</div>
+<div class="prog-bar" style="height:6px">
+<div class="prog-fill" style="width:0" data-w="78%">
+</div>
+</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="save-btn" style="padding:7px 16px;font-size:12px" onclick="window.location.href='404.html'">View Details</button>
+<button style="padding:7px 16px;font-size:12px;background:var(--bg3);color:var(--text-muted);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Inter',sans-serif" onclick="window.location.href='404.html'">Share</button>
+</div>
+</div>
+<div class="card proj-card" data-status="active" style="border-left:3px solid var(--info)">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<div class="proj-icon p-blue" style="width:44px;height:44px;font-size:17px">
+<i class="fas fa-bolt">
+</i>
+</div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--text)">Power Grid Upgrade</div>
+<div style="font-size:11px;color:var(--text-muted);margin-top:2px">Due: Oct 15, 2026 · 4 members</div>
+</div>
+<span class="pill pi" style="margin-left:auto">In Progress</span>
+</div>
+<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.6">Upgrading regional power distribution grid to handle 40% more load with smart switching and fault detection.</div>
+<div style="margin-bottom:8px">
+<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:5px">
+<span>Progress</span>
+<span>52%</span>
+</div>
+<div class="prog-bar" style="height:6px">
+<div class="prog-fill b" style="width:0" data-w="52%">
+</div>
+</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="save-btn" style="padding:7px 16px;font-size:12px" onclick="window.location.href='404.html'">View Details</button>
+<button style="padding:7px 16px;font-size:12px;background:var(--bg3);color:var(--text-muted);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Inter',sans-serif" onclick="window.location.href='404.html'">Share</button>
+</div>
+</div>
+<div class="card proj-card" data-status="active" style="border-left:3px solid var(--success)">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<div class="proj-icon p-green" style="width:44px;height:44px;font-size:17px">
+<i class="fas fa-leaf">
+</i>
+</div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--text)">Green Energy Initiative</div>
+<div style="font-size:11px;color:var(--text-muted);margin-top:2px">Due: Dec 1, 2026 · 8 members</div>
+</div>
+<span class="pill ps" style="margin-left:auto">Active</span>
+</div>
+<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.6">Solar panel farm installation across 5 industrial facilities targeting 60% renewable energy adoption by Q1 2027.</div>
+<div style="margin-bottom:8px">
+<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:5px">
+<span>Progress</span>
+<span>31%</span>
+</div>
+<div class="prog-bar" style="height:6px">
+<div class="prog-fill g" style="width:0" data-w="31%">
+</div>
+</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="save-btn" style="padding:7px 16px;font-size:12px" onclick="window.location.href='404.html'">View Details</button>
+<button style="padding:7px 16px;font-size:12px;background:var(--bg3);color:var(--text-muted);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Inter',sans-serif" onclick="window.location.href='404.html'">Share</button>
+</div>
+</div>
+<div class="card proj-card" data-status="completed" style="border-left:3px solid var(--warning)">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+<div class="proj-icon p-amber" style="width:44px;height:44px;font-size:17px">
+<i class="fas fa-gears">
+</i>
+</div>
+<div>
+<div style="font-size:14px;font-weight:700;color:var(--text)">Automation Integration</div>
+<div style="font-size:11px;color:var(--text-muted);margin-top:2px">Due: Nov 5, 2026 · 3 members</div>
+</div>
+<span class="pill ps" style="margin-left:auto;background:rgba(245,158,11,.12);color:var(--warning)">Near Done</span>
+</div>
+<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.6">PLC and SCADA integration for assembly line automation, reducing manual handling by 80% across 3 plants.</div>
+<div style="margin-bottom:8px">
+<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:5px">
+<span>Progress</span>
+<span>91%</span>
+</div>
+<div class="prog-bar" style="height:6px">
+<div class="prog-fill a" style="width:0" data-w="91%">
+</div>
+</div>
+</div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="save-btn" style="padding:7px 16px;font-size:12px" onclick="window.location.href='404.html'">View Details</button>
+<button style="padding:7px 16px;font-size:12px;background:var(--bg3);color:var(--text-muted);border:1px solid var(--border);border-radius:9px;cursor:pointer;font-family:'Inter',sans-serif" onclick="window.location.href='404.html'">Share</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══ PAGE: ORDERS ═══ -->
+<section id="page-orders" class="page-section">
+<div class="section-head">
+<h2>
+<i class="fas fa-box-open" style="color:var(--primary);margin-right:8px">
+</i>My <span>Orders</span>
+</h2>
+<p>Track, manage and reorder your industrial supplies.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px">
+<div class="stat-card">
+<div class="stat-header">
+<div class="stat-icon ic-green">
+<i class="fas fa-circle-check">
+</i>
+</div>
+</div>
+<div class="stat-val" data-target="29">0</div>
+<div class="stat-lbl">Delivered</div>
+</div>
+<div class="stat-card">
+<div class="stat-header">
+<div class="stat-icon ic-amber">
+<i class="fas fa-truck">
+</i>
+</div>
+</div>
+<div class="stat-val" data-target="11">0</div>
+<div class="stat-lbl">In Transit</div>
+</div>
+<div class="stat-card">
+<div class="stat-header">
+<div class="stat-icon ic-orange">
+<i class="fas fa-clock">
+</i>
+</div>
+</div>
+<div class="stat-val" data-target="7">0</div>
+<div class="stat-lbl">Processing</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<div class="card-title">
+<i class="fas fa-list">
+</i> Order History</div>
+<button class="save-btn" style="padding:8px 18px;font-size:12px" onclick="window.location.href='404.html'">
+<i class="fas fa-plus" style="margin-right:6px">
+</i>New Order</button>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Order ID</th>
+<th>Item</th>
+<th>Date</th>
+<th>Qty</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td-bold">#ORD-4821</td>
+<td>Industrial Valves</td>
+<td>Aug 8, 2026</td>
+<td>20 units</td>
+<td class="td-bold">$3,240</td>
+<td>
+<span class="pill ps">
+<i class="fas fa-circle">
+</i> Delivered</span>
+</td>
+<td>
+<button style="background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer" onclick="window.location.href='404.html'">Details</button>
+</td>
+</tr>
+<tr>
+<td class="td-bold">#ORD-4753</td>
+<td>Safety Helmets</td>
+<td>Aug 5, 2026</td>
+<td>50 units</td>
+<td class="td-bold">$980</td>
+<td>
+<span class="pill pw">
+<i class="fas fa-circle">
+</i> Shipping</span>
+</td>
+<td>
+<button style="background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer" onclick="window.location.href='404.html'">Track</button>
+</td>
+</tr>
+<tr>
+<td class="td-bold">#ORD-4698</td>
+<td>Steel Pipes – Grade A</td>
+<td>Jul 30, 2026</td>
+<td>1 lot</td>
+<td class="td-bold">$12,500</td>
+<td>
+<span class="pill pi">
+<i class="fas fa-circle">
+</i> Processing</span>
+</td>
+<td>
+<button style="background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer" onclick="window.location.href='404.html'">Details</button>
+</td>
+</tr>
+<tr>
+<td class="td-bold">#ORD-4612</td>
+<td>Hydraulic Pumps</td>
+<td>Jul 22, 2026</td>
+<td>4 units</td>
+<td class="td-bold">$7,800</td>
+<td>
+<span class="pill ps">
+<i class="fas fa-circle">
+</i> Delivered</span>
+</td>
+<td>
+<button style="background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer" onclick="window.location.href='404.html'">Reorder</button>
+</td>
+</tr>
+<tr>
+<td class="td-bold">#ORD-4501</td>
+<td>Control Panels</td>
+<td>Jul 15, 2026</td>
+<td>2 units</td>
+<td class="td-bold">$22,000</td>
+<td>
+<span class="pill pd">
+<i class="fas fa-circle">
+</i> Cancelled</span>
+</td>
+<td>
+<button style="background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer" onclick="window.location.href='404.html'">Reorder</button>
+</td>
+</tr>
+<tr>
+<td class="td-bold">#ORD-4405</td>
+<td>Conveyor Belts</td>
+<td>Jun 28, 2026</td>
+<td>3 rolls</td>
+<td class="td-bold">$5,400</td>
+<td>
+<span class="pill ps">
+<i class="fas fa-circle">
+</i> Delivered</span>
+</td>
+<td>
+<button style="background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer" onclick="window.location.href='404.html'">Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- ═══ PAGE: DOCUMENTS ═══ -->
+<section id="page-documents" class="page-section">
+<div class="section-head">
+<h2>
+<i class="fas fa-file-lines" style="color:var(--primary);margin-right:8px">
+</i>My <span>Documents</span>
+</h2>
+<p>Manage project documents, reports, and contracts.</p>
+</div>
+<div class="card" style="margin-bottom:18px">
+<div class="card-header">
+<div class="card-title">
+<i class="fas fa-folder-open">
+</i> All Documents</div>
+<button class="save-btn" style="padding:8px 18px;font-size:12px" onclick="window.location.href='404.html'">
+<i class="fas fa-upload" style="margin-right:6px">
+</i>Upload</button>
+</div>
+<div class="doc-grid">
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#3b82f6"><i class="fas fa-file-pdf"></i></div>
+<div class="doc-name">Project Proposal Q3.pdf</div>
+<div class="doc-size">2.4 MB</div>
+<div class="doc-date">Aug 7, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#22c55e"><i class="fas fa-file-excel"></i></div>
+<div class="doc-name">Safety Report 2026.xlsx</div>
+<div class="doc-size">890 KB</div>
+<div class="doc-date">Aug 5, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#f59e0b"><i class="fas fa-file-contract"></i></div>
+<div class="doc-name">Plant Modernization Contract.pdf</div>
+<div class="doc-size">1.1 MB</div>
+<div class="doc-date">Jul 29, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#FF5E14"><i class="fas fa-file-word"></i></div>
+<div class="doc-name">Technical Specs – Grid.docx</div>
+<div class="doc-size">560 KB</div>
+<div class="doc-date">Jul 22, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#8b5cf6"><i class="fas fa-file-contract"></i></div>
+<div class="doc-name">Supplier Agreement 2026.pdf</div>
+<div class="doc-size">780 KB</div>
+<div class="doc-date">Jul 15, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#06b6d4"><i class="fas fa-file-invoice-dollar"></i></div>
+<div class="doc-name">Invoice #INV-2201.pdf</div>
+<div class="doc-size">340 KB</div>
+<div class="doc-date">Jul 10, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#ef4444"><i class="fas fa-file-excel"></i></div>
+<div class="doc-name">Audit Log July 2026.xlsx</div>
+<div class="doc-size">1.8 MB</div>
+<div class="doc-date">Aug 1, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#22c55e"><i class="fas fa-file-pdf"></i></div>
+<div class="doc-name">Budget Report Q2.pdf</div>
+<div class="doc-size">920 KB</div>
+<div class="doc-date">Jun 30, 2026</div>
+</div>
+<div class="doc-card" onclick="window.location.href='404.html'">
+<div class="doc-icon" style="color:#f59e0b"><i class="fas fa-certificate"></i></div>
+<div class="doc-name">ISO Certificate 2026.pdf</div>
+<div class="doc-size">450 KB</div>
+<div class="doc-date">Jan 12, 2026</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══ PAGE: MESSAGES ═══ -->
+<section id="page-messages" class="page-section">
+<div class="section-head">
+<h2>
+<i class="fas fa-comment-dots" style="color:var(--primary);margin-right:8px">
+</i>My <span>Messages</span>
+</h2>
+<p>Communicate with your team and admin support.</p>
+</div>
+<div class="msg-layout">
+<!-- List -->
+<div class="msg-list">
+<div class="msg-list-item active" onclick="openChat('Admin Team','AT','linear-gradient(135deg,#FF5E14,#ff8c52)')">
+<div class="msg-av" style="background:linear-gradient(135deg,#FF5E14,#ff8c52)">AT</div>
+<div class="msg-info">
+<div class="msg-from">Admin Team</div>
+<div class="msg-preview">Your project was reviewed…</div>
+<div class="msg-time">10:05 AM</div>
+</div>
+<div class="msg-dot">
+</div>
+</div>
+<div class="msg-list-item" onclick="openChat('Sara Rahman','SR','linear-gradient(135deg,#8b5cf6,#a78bfa)')">
+<div class="msg-av" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)">SR</div>
+<div class="msg-info">
+<div class="msg-from">Sara Rahman</div>
+<div class="msg-preview">Can you send the specs file?</div>
+<div class="msg-time">9:30 AM</div>
+</div>
+<div class="msg-dot">
+</div>
+</div>
+<div class="msg-list-item" onclick="openChat('Mark Khan','MK','linear-gradient(135deg,#06b6d4,#67e8f9)')">
+<div class="msg-av" style="background:linear-gradient(135deg,#06b6d4,#67e8f9)">MK</div>
+<div class="msg-info">
+<div class="msg-from">Mark Khan</div>
+<div class="msg-preview">Site visit scheduled for Monday</div>
+<div class="msg-time">Yesterday</div>
+</div>
+<div class="msg-dot">
+</div>
+</div>
+<div class="msg-list-item" onclick="openChat('Tom Walsh','TW','linear-gradient(135deg,#22c55e,#86efac)')">
+<div class="msg-av" style="background:linear-gradient(135deg,#22c55e,#86efac)">TW</div>
+<div class="msg-info">
+<div class="msg-from">Tom Walsh</div>
+<div class="msg-preview">Order #ORD-4698 dispatched</div>
+<div class="msg-time">Aug 9</div>
+</div>
+</div>
+<div class="msg-list-item" onclick="openChat('Support Bot','SB','linear-gradient(135deg,#f59e0b,#fcd34d)')">
+<div class="msg-av" style="background:linear-gradient(135deg,#f59e0b,#fcd34d)">SB</div>
+<div class="msg-info">
+<div class="msg-from">STACKLY Support</div>
+<div class="msg-preview">Ticket #4512 resolved.</div>
+<div class="msg-time">Aug 8</div>
+</div>
+</div>
+</div>
+<!-- Panel -->
+<div class="msg-panel" style="background:var(--card)">
+<div class="msg-panel-header">
+<div class="msg-av" id="chatAv" style="background:linear-gradient(135deg,#FF5E14,#ff8c52)">AT</div>
+<div>
+<div style="font-size:13px;font-weight:700;color:var(--text)" id="chatName">Admin Team</div>
+<div style="font-size:11px;color:var(--success)">
+<i class="fas fa-circle" style="font-size:7px">
+</i> Online</div>
+</div>
+</div>
+<div class="msg-panel-body" id="msgBody">
+<div style="display:flex;flex-direction:column">
+<div class="msg-bubble recv">Hi! Your project <b>Steel Plant Modernization</b> has been reviewed and approved. Great work!</div>
+<div class="msg-bubble-time">10:01 AM</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:flex-end">
+<div class="msg-bubble sent">Thank you! When does the next phase begin?</div>
+<div class="msg-bubble-time">10:03 AM</div>
+</div>
+<div style="display:flex;flex-direction:column">
+<div class="msg-bubble recv">Phase 2 begins September 15. We'll send the documentation by Monday.</div>
+<div class="msg-bubble-time">10:05 AM</div>
+</div>
+</div>
+<div class="msg-input-row">
+<input class="msg-input" type="text" id="msgInput" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()"/>
+<button class="msg-send-btn" onclick="sendMsg()">
+<i class="fas fa-paper-plane">
+</i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══ PAGE: NOTIFICATIONS ═══ -->
+<section id="page-notifications" class="page-section">
+<div class="section-head">
+<h2>
+<i class="fas fa-bell" style="color:var(--primary);margin-right:8px">
+</i>My <span>Notifications</span>
+</h2>
+<p>Stay updated on your projects, orders, and messages.</p>
+</div>
+<div class="card">
+<div class="card-header">
+<div class="card-title">
+<i class="fas fa-bell">
+</i> All Notifications</div>
+<button onclick="window.location.href='404.html'" class="save-btn" style="padding:8px 18px;font-size:12px">Mark All Read</button>
+</div>
+<div id="notifList">
+<div class="notif-item" id="n1">
+<div class="notif-unread">
+</div>
+<div class="notif-icon ic-orange">
+<i class="fas fa-circle-check" style="color:var(--primary)">
+</i>
+</div>
+<div class="notif-body">
+<div class="notif-text">Order <b>#ORD-4821</b> has been delivered successfully.</div>
+<div class="notif-time">Today · 2 hours ago</div>
+</div>
+</div>
+<div class="notif-item" id="n2">
+<div class="notif-unread">
+</div>
+<div class="notif-icon ic-blue">
+<i class="fas fa-message" style="color:var(--info)">
+</i>
+</div>
+<div class="notif-body">
+<div class="notif-text">New message from <b>Admin Team</b> regarding your project review.</div>
+<div class="notif-time">Today · 5 hours ago</div>
+</div>
+</div>
+<div class="notif-item" id="n3">
+<div class="notif-unread">
+</div>
+<div class="notif-icon ic-amber">
+<i class="fas fa-triangle-exclamation" style="color:var(--warning)">
+</i>
+</div>
+<div class="notif-body">
+<div class="notif-text">Project <b>Power Grid Upgrade</b> deadline is approaching in 65 days.</div>
+<div class="notif-time">Yesterday · Aug 9, 2026</div>
+</div>
+</div>
+<div class="notif-item">
+<div style="width:8px">
+</div>
+<div class="notif-icon ic-green">
+<i class="fas fa-file-circle-check" style="color:var(--success)">
+</i>
+</div>
+<div class="notif-body">
+<div class="notif-text">Document <b>Project Proposal Q3.pdf</b> was uploaded successfully.</div>
+<div class="notif-time">Aug 7, 2026</div>
+</div>
+</div>
+<div class="notif-item">
+<div style="width:8px">
+</div>
+<div class="notif-icon p-purple" style="background:rgba(139,92,246,.15)">
+<i class="fas fa-user-check" style="color:#8b5cf6">
+</i>
+</div>
+<div class="notif-body">
+<div class="notif-text">Profile score updated to <b>94 points</b>. Keep it up!</div>
+<div class="notif-time">Aug 5, 2026</div>
+</div>
+</div>
+<div class="notif-item">
+<div style="width:8px">
+</div>
+<div class="notif-icon ic-orange">
+<i class="fas fa-truck" style="color:var(--primary)">
+</i>
+</div>
+<div class="notif-body">
+<div class="notif-text">Order <b>#ORD-4753</b> is now in transit. Expected delivery: Aug 12.</div>
+<div class="notif-time">Aug 5, 2026</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+</div>
+<!-- /content -->
+</div>
+<!-- /main -->
+<script>
+/* Session */
+(function(){
+  var stored = sessionStorage.getItem('stacklyUser');
+  if(stored){
+    try{
+      var u = JSON.parse(stored);
+      var fname = (u.fname || '').trim();
+      var lname = (u.lname || '').trim();
+      var full = lname ? fname + ' ' + lname : fname;
+      var ini = fname ? fname[0].toUpperCase() : '?';
+      if(lname) ini += lname[0].toUpperCase();
+      document.getElementById('sidebarAvatar').textContent = ini;
+      document.getElementById('sidebarName').textContent = full;
+      document.getElementById('greetName').textContent = fname || full;
+      document.getElementById('topAvatar').textContent = ini;
+      document.getElementById('profileRing').textContent = ini;
+      document.getElementById('profileFullName').textContent = full;
+      document.getElementById('profileEmail').textContent = u.email||'';
+      document.getElementById('settingsAvatar').textContent = ini;
+      document.getElementById('setFname').value = fname;
+      document.getElementById('setLname').value = lname;
+      document.getElementById('setEmail').value = u.email||'';
+    }catch(e){}
+  }
+})();
+
+/* Date */
+var d=new Date();
+document.getElementById('currentDate').textContent = d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+
+/* Greeting */
+var h=new Date().getHours();
+var greetings=['Good Night','Good Morning','Good Afternoon','Good Evening'];
+var idx=h<5?0:h<12?1:h<17?2:h<21?3:0;
+document.getElementById('greetMsg').textContent=greetings[idx]+'! Here\'s your industrial dashboard overview.';
+
+/* Nav */
+var titles = {
+  overview:'User Dashboard', projects:'My Projects', orders:'My Orders',
+  documents:'Documents', messages:'Messages', notifications:'Notifications',
+  settings:'Settings', help:'Help & Support'
+};
+
+function navTo(page){
+  document.querySelectorAll('.page-section').forEach(function(s){s.classList.remove('active')});
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});
+  var btn = document.querySelector('[data-page="'+page+'"]');
+  if(btn) btn.classList.add('active');
+  var t = titles[page]||'Dashboard';
+  var parts=t.split(' ');
+  if(parts.length>1) document.getElementById('topbarTitle').innerHTML=parts[0]+' <span>'+parts.slice(1).join(' ')+'</span>';
+  else document.getElementById('topbarTitle').innerHTML='<span>'+t+'</span>';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(page==='overview') { setTimeout(animateProgress,200); setTimeout(animateChart,300); }
+  if(page==='projects') setTimeout(animateAllProgress,200);
+  if(page==='orders')   setTimeout(animateOrderStats,200);
+}
+
+document.querySelectorAll('.nav-item[data-page]').forEach(function(btn){
+  btn.addEventListener('click',function(){ navTo(this.dataset.page); });
+});
+
+/* Animate */
+function animateCount(els){
+  els.forEach(function(el){
+    var target=parseInt(el.dataset.target); var start=0;
+    var step=Math.max(1,Math.ceil(target/70));
+    var timer=setInterval(function(){
+      start=Math.min(start+step,target); el.textContent=start;
+      if(start>=target) clearInterval(timer);
+    },16);
+  });
+}
+
+function animateProgress(){
+  document.querySelectorAll('#page-overview .prog-fill[data-w]').forEach(function(el){
+    el.style.width=el.dataset.w;
+  });
+  document.querySelectorAll('.stat-val[data-target]').forEach(function(el){
+    if(el.closest('#page-overview')){
+      var t=parseInt(el.dataset.target),s=0,st=Math.max(1,Math.ceil(t/70));
+      var timer=setInterval(function(){
+        s=Math.min(s+st,t);el.textContent=s;if(s>=t)clearInterval(timer);
+      },16);
+    }
+  });
+}
+
+function animateAllProgress(){
+  document.querySelectorAll('#page-projects .prog-fill[data-w]').forEach(function(el){el.style.width=el.dataset.w;});
+}
+function animateOrderStats(){
+  animateCount(document.querySelectorAll('#page-orders .stat-val[data-target]'));
+}
+
+function animateChart(){
+  document.querySelectorAll('#chartBars .cfill[data-h]').forEach(function(el,i){
+    setTimeout(function(){el.style.height=el.dataset.h;},150+i*90);
+  });
+}
+
+/* OnLoad */
+window.addEventListener('load',function(){
+  setTimeout(animateProgress,300);
+  setTimeout(animateChart,400);
+});
+
+/* Filter */
+function filterProj(type){
+  document.querySelectorAll('.proj-card').forEach(function(c){
+    c.style.display = (type==='all'||c.dataset.status===type) ? '' : 'none';
+  });
+  ['all','active','completed'].forEach(function(t){
+    var btn = document.getElementById('pf-'+t);
+    if(btn) btn.style.background = t===type ? 'var(--primary)' : 'var(--bg3)';
+  });
+}
+
+/* Chat */
+function openChat(name, initials, bg, event){
+  document.getElementById('chatName').textContent = name;
+  document.getElementById('chatAv').textContent = initials;
+  document.getElementById('chatAv').style.background = bg;
+  document.querySelectorAll('.msg-list-item').forEach(function(i){i.classList.remove('active')});
+  if(event) event.currentTarget.classList.add('active');
+}
+
+function sendMsg(){
+  var inp = document.getElementById('msgInput');
+  var txt = inp.value.trim();
+  if(!txt) return; // do nothing if empty
+  
+  // if text is entered, redirect to 404
+  window.location.href = '404.html';
+}
+
+/* Notif */
+function markAllRead(){
+  document.querySelectorAll('.notif-unread').forEach(function(dot){dot.style.background='transparent'});
+  alert('All notifications marked as read!');
+}
+
+/* Settings */
+function saveProfile(){
+  var fn=document.getElementById('setFname').value.trim();
+  var ln=document.getElementById('setLname').value.trim();
+  var em=document.getElementById('setEmail').value.trim();
+  if(!fn){alert('Please enter your first name.');return;}
+  var stored=sessionStorage.getItem('stacklyUser');
+  var u=stored?JSON.parse(stored):{};
+  u.fname=fn; u.lname=ln; u.email=em;
+  sessionStorage.setItem('stacklyUser',JSON.stringify(u));
+  var full=fn+' '+ln; var ini=(fn[0]+(ln[0]||'')).toUpperCase();
+  document.getElementById('sidebarAvatar').textContent=ini;
+  document.getElementById('sidebarName').textContent=full;
+  document.getElementById('topAvatar').textContent=ini;
+  document.getElementById('profileRing').textContent=ini;
+  document.getElementById('profileFullName').textContent=full;
+  document.getElementById('profileEmail').textContent=em;
+  document.getElementById('greetName').textContent=fn;
+  document.getElementById('settingsAvatar').textContent=ini;
+  alert('Profile saved successfully!');
+}
+
+/* FAQ */
+function toggleFaq(el){
+  var item=el.parentElement;
+  document.querySelectorAll('.faq-item').forEach(function(f){if(f!==item)f.classList.remove('open')});
+  item.classList.toggle('open');
+}
+
+/* Logout */
+function logout(){
+  sessionStorage.removeItem('stacklyUser');
+  window.location.href='login.html';
+}
+</script>
+</body>
+</html>
+
