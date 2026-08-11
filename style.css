@@ -2208,3 +2208,41 @@ html.no-scroll, body.no-scroll { overflow: hidden !important; touch-action: none
 
 .mobile-login-item .btn-primary { display: inline-block !important; }
 
+/* Footer Bottom Updates */
+.footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.footer-social-bottom {
+    display: flex;
+    gap: 15px;
+}
+.footer-social-bottom a {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+    text-decoration: none;
+    font-size: 14px;
+}
+.footer-social-bottom a:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+@media (max-width: 768px) {
+    .footer-bottom .container {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+
