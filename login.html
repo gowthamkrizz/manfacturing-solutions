@@ -115,10 +115,9 @@
 </i>
 </button>
 </div>
-<div class="field-error" id="lpasswordErr">
-<i class="fas fa-triangle-exclamation">
-</i> Password must be at least 8 characters</div>
-</div>
+            <div class="field-error" id="lpasswordErr">
+                <i class="fas fa-exclamation-circle"></i> Password must be at least 8 chars, 1 uppercase, 1 lowercase, 1 number</div>
+        </div>
 <!-- Remember + Forgot -->
 <div class="form-meta">
 <label class="remember-wrap">
@@ -174,11 +173,17 @@
         fieldErr('lroleErr',     !role);     if (!role)     valid = false;
         var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         fieldErr('lemailErr',    !emailOk);  if (!emailOk)  valid = false;
-        var passOk = password.length >= 8;
+        var passOk = password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password);
         fieldErr('lpasswordErr', !passOk);   if (!passOk)   valid = false;
 
         if (!valid) {
             showAlert('error', 'Please fix the errors above before signing in.');
+            return;
+        }
+
+        var remember = document.getElementById('remember').checked;
+        if (!remember) {
+            showAlert('error', 'You must check Remember me to sign in.');
             return;
         }
 
@@ -206,6 +211,8 @@
         var el = document.getElementById(id);
         if (el) el.addEventListener('input', function() { fieldErr(id + 'Err', false); });
     });
+
+
 </script>
 </body>
 </html>

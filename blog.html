@@ -153,9 +153,22 @@
 </div>
 <!-- Sidebar -->
 <div class="sidebar gsap-reveal">
-<div class="search-widget">
-<input type="text" placeholder="Search ...">
+<div class="search-widget" style="position: relative;">
+<input type="text" id="blogSearchInput" placeholder="Search ..." style="padding-right: 40px;">
+<i class="fas fa-search" id="blogSearchBtn" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--primary-color);" onclick="handleBlogSearch()"></i>
 </div>
+<script>
+function handleBlogSearch() {
+    var inputEl = document.getElementById('blogSearchInput');
+    var searchInput = inputEl.value.trim();
+    if (searchInput !== '') {
+        window.location.href = '404.html';
+    } else {
+        inputEl.placeholder = 'enter the text';
+        inputEl.style.borderColor = 'red';
+    }
+}
+</script>
 <div class="recent-posts-widget">
 <h3 class="widget-title">Recent posts</h3>
 <div class="recent-post-item">

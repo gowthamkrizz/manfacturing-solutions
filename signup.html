@@ -157,7 +157,7 @@
 </small>
 <div class="field-error" id="rpassErr">
 <i class="fas fa-triangle-exclamation">
-</i> Min. 8 characters required</div>
+</i> Min. 8 chars, 1 uppercase, 1 lowercase, 1 number</div>
 </div>
 <!-- Confirm Password -->
 <div class="form-group">
@@ -233,7 +233,7 @@
         var confirm = document.getElementById('rconfirm').value;
         var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         fieldErr('remailErr',   !emailOk);  if (!emailOk)  valid = false;
-        var passOk  = pass.length >= 8;
+        var passOk = pass.length >= 8 && /[A-Z]/.test(pass) && /[a-z]/.test(pass) && /[0-9]/.test(pass);
         fieldErr('rpassErr',    !passOk);   if (!passOk)   valid = false;
         var matchOk = pass === confirm && confirm.length > 0;
         fieldErr('rconfirmErr', !matchOk);  if (!matchOk)  valid = false;

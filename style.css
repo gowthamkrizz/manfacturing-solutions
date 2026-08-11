@@ -473,15 +473,13 @@ ul { list-style: none; }
    Footer — GloCore Style
    ================================ */
 .footer {
-    background-color: #111111;
+    background-color: #1a1a1a;
     color: #999;
-    padding: 60px 0 0;
+    padding: 70px 0 0;
 }
 
 .footer-inner {
-    background: #1a1a1a;
-    border-radius: 20px;
-    padding: 70px 60px;
+    padding: 0 0 60px 0;
     display: grid;
     grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
     gap: 50px;
