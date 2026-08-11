@@ -138,7 +138,7 @@
 <i class="fas fa-lock input-icon">
 </i>
 <input type="password" id="rpass" class="form-input" placeholder="Min. 8 characters" required oninput="checkStrength(this.value)">
-<button type="button" class="toggle-pass" onclick="toggleVis('rpass',this)">
+<button type="button" class="toggle-pass" aria-label="Toggle password visibility" onclick="toggleVis('rpass',this)">
 <i class="fas fa-eye">
 </i>
 </button>
@@ -166,7 +166,7 @@
 <i class="fas fa-lock input-icon">
 </i>
 <input type="password" id="rconfirm" class="form-input" placeholder="Re-enter your password" required oninput="checkMatch()">
-<button type="button" class="toggle-pass" onclick="toggleVis('rconfirm',this)">
+<button type="button" class="toggle-pass" aria-label="Toggle confirm password visibility" onclick="toggleVis('rconfirm',this)">
 <i class="fas fa-eye">
 </i>
 </button>
@@ -175,7 +175,7 @@
 <i class="fas fa-triangle-exclamation">
 </i> Passwords do not match</div>
 </div>
-<button type="submit" class="btn-submit" id="submitBtn">
+<button type="submit" class="btn-submit" id="submitBtn" aria-label="Create Account">
 <span>Create Account</span>
 <i class="fas fa-arrow-right">
 </i>

@@ -31,33 +31,33 @@
 </div>
 <nav class="sidebar-nav">
 <div class="nav-label">Main</div>
-<button class="nav-item active" data-page="overview">
+<button class="nav-item active" data-page="overview" aria-label="Overview">
 <i class="fas fa-gauge-high">
 </i> Overview     </button>
-<button class="nav-item" data-page="projects">
+<button class="nav-item" data-page="projects" aria-label="My Projects">
 <i class="fas fa-diagram-project">
 </i> My Projects       <span class="nav-badge">4</span>
 </button>
-<button class="nav-item" data-page="orders">
+<button class="nav-item" data-page="orders" aria-label="Orders">
 <i class="fas fa-box-open">
 </i> Orders       <span class="nav-badge">2</span>
 </button>
-<button class="nav-item" data-page="documents">
+<button class="nav-item" data-page="documents" aria-label="Documents">
 <i class="fas fa-file-lines">
 </i> Documents     </button>
 <div class="nav-label" style="margin-top:10px">Support</div>
-<button class="nav-item" data-page="messages">
+<button class="nav-item" data-page="messages" aria-label="Messages">
 <i class="fas fa-comment-dots">
 </i> Messages       <span class="nav-badge">3</span>
 </button>
-<button class="nav-item" data-page="notifications">
+<button class="nav-item" data-page="notifications" aria-label="Notifications">
 <i class="fas fa-bell">
 </i> Notifications     </button>
 
 
 </nav>
 <div class="sidebar-footer">
-<button class="logout-btn" onclick="logout()">
+<button class="logout-btn" aria-label="Sign Out" onclick="logout()">
 <i class="fas fa-right-from-bracket">
 </i> Sign Out     </button>
 </div>
@@ -171,7 +171,7 @@
 <div class="card-title">
 <i class="fas fa-diagram-project">
 </i> My Projects</div>
-<a class="card-action" onclick="navTo('projects')">View All →</a>
+<a class="card-action" href="#" onclick="navTo('projects'); return false;">View All →</a>
 </div>
 <div class="proj-item">
 <div class="proj-icon p-orange">
@@ -250,13 +250,13 @@
 </i> Quick Actions</div>
 </div>
 <div class="qa-grid">
-<a class="qa-btn" onclick="navTo('orders')">
+<a class="qa-btn" href="#" onclick="navTo('orders'); return false;">
 <i class="fas fa-cart-plus">
 </i> New Order</a>
-<a class="qa-btn" onclick="navTo('projects')">
+<a class="qa-btn" href="#" onclick="navTo('projects'); return false;">
 <i class="fas fa-plus-circle">
 </i> New Project</a>
-<a class="qa-btn" onclick="navTo('documents')">
+<a class="qa-btn" href="#" onclick="navTo('documents'); return false;">
 <i class="fas fa-file-upload">
 </i> Upload Doc</a>
 
@@ -795,7 +795,7 @@
 </div>
 <div class="msg-input-row">
 <input class="msg-input" type="text" id="msgInput" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()"/>
-<button class="msg-send-btn" onclick="sendMsg()">
+<button class="msg-send-btn" aria-label="Send message" onclick="sendMsg()">
 <i class="fas fa-paper-plane">
 </i>
 </button>
